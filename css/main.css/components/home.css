@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    margin: 0;
+    padding: 50px;
+    
+        background-image: url(https://mala3b4.odoo.com/web_editor/shape/web_editor/Floats/13.svg?c1=o-color-1&c2=o-color-2&c5=o-color-5&flip=x);
+        background-size: cover;      /* adapte à toute la page */
+        background-repeat: no-repeat; /* évite les répétitions */
+        background-position: center;  /* centre l'image */
+      
+  }
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.content h2{
+    font-size: 28px;
+    color: #1e293b;
+    margin-bottom: 30px;
+    border-bottom-style: dotted;
+    border-bottom-width: 5px;
+    max-width: fit-content;
+    border-bottom-color:#a7f3d0 ;
+}
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    
+}
+.discover-our-facility{
+    background-color: #a7f3d0;
+      color: #0f766e;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 200px;
+    
+
+}
+.content p {
+    font-size: 16px;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
