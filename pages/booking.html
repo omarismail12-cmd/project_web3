@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Stadium Booking</title>
+    <link rel="stylesheet" href="/assets/css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html">
+                        <h1>Sport<span>Zone</span></h1>
+                    </a>
+                </div>
+                <nav class="main-nav" id="nav-menu">
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="booking_new.html" class="active">Booking</a></li>
+                        <li><a href="events_new.html">Events</a></li>
+                        <li><a href="shop_new.html">Shop</a></li>
+                        <li><a href="contact_new.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <input type="search" placeholder="Search...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                    <a href="#" id="profile-btn" class="btn-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="btn btn-primary">Register</a>
+                    <button class="menu-toggle" id="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section booking-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Book Your Perfect Venue</h1>
+                        <p>Find and book sports facilities for your next game or training session</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sport Selection Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Select Your Sport</h2>
+                    <p>Choose the sport you're interested in to view available facilities</p>
+                </div>
+                
+                <div class="sport-selection">
+                    <div id="sport-cards" class="sport-card-container">
+                        <!-- Sport cards will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Section -->
+        <section class="section">
+            <div class="container">
+                <div id="facilities-header" class="section-header">
+                    <h2>Available Facilities</h2>
+                    <div class="facilities-info">
+                        <p>Showing <span id="facilities-count">0</span> facilities</p>
+                    </div>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filters">
+                        <h3>Filters</h3>
+                        
+                        <div class="filter-group">
+                            <label for="price-range">Max Price: $<span id="price-value">200</span></label>
+                            <input type="range" id="price-range" min="0" max="200" value="200" class="slider">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Availability:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" id="morning" checked> Morning</label>
+                                <label><input type="checkbox" id="afternoon" checked> Afternoon</label>
+                                <label><input type="checkbox" id="evening" checked> Evening</label>
+                            </div>
+                        </div>
+                        
+                        <button id="clear-filters" class="btn btn-outline">Clear All</button>
+                    </div>
+                </div>
+
+                <div id="facilities-container" class="facilities-grid">
+                    <!-- Facilities will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Sport<span>Zone</span></h2>
+                    <p>Your one-stop destination for all sports needs.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="booking_new.html">Booking</a></li>
+                            <li><a href="events_new.html">Events</a></li>
+                            <li><a href="shop_new.html">Shop</a></li>
+                            <li><a href="contact_new.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Sports</h3>
+                        <ul>
+                            <li><a href="#">Football</a></li>
+                            <li><a href="#">Basketball</a></li>
+                            <li><a href="#">Tennis</a></li>
+                            <li><a href="#">Swimming</a></li>
+                            <li><a href="#">Volleyball</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact Info</h3>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Sports Avenue, City</li>
+                            <li><i class="fas fa-phone"></i> +1 234 5678 910</li>
+                            <li><i class="fas fa-envelope"></i> info@sportzone.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2024 SportZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <h2 id="modal-title">Book Facility</h2>
+            <form id="booking-form" class="booking-form">
+                <div class="form-columns">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="booking-date">Date</label>
+                            <input type="date" id="booking-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-time">Start Time</label>
+                            <select id="start-time" required>
+                                <option value="">Select date first</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration</label>
+                            <select id="duration" required>
+                                <option value="1">1 hour</option>
+                                <option value="2">2 hours</option>
+                                <option value="3">3 hours</option>
+                                <option value="4">4 hours</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="players">Number of Players</label>
+                            <input type="number" id="players" min="1" max="20" value="1" required>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="booking-summary">
+                            <h3>Booking Summary</h3>
+                            <div class="summary-details">
+                                <div class="summary-item">
+                                    <span>Facility:</span>
+                                    <strong id="summary-facility">Not selected</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Date & Time:</span>
+                                    <strong id="summary-datetime">Not selected</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Duration:</span>
+                                    <strong id="summary-duration">Not selected</strong>
+                                </div>
+                                <div class="summary-divider"></div>
+                                <div class="summary-item">
+                                    <span>Base Price:</span>
+                                    <strong id="summary-base-price">$0</strong>
+                                </div>
+                                <div class="summary-item total">
+                                    <span>Total:</span>
+                                    <strong id="summary-total">$0</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Confirm Booking
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/assets/js/booking.js"></script>
+</body>
+</html>
