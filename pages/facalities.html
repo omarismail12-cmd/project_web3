@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities - SportBook</title>
+    <link rel="stylesheet" href="/assets/css/facalities.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="facilities-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="dashboard.html" class="logo">SportBook</a>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-outline" onclick="handleSearch()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        Search
+                    </button>
+                    <a href="booking.html" class="btn btn-primary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        New Booking
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Sports Facilities</h1>
+                <p class="page-description">Explore our world-class sports facilities and book your preferred courts</p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label for="sportFilter">Filter by Sport:</label>
+                    <select id="sportFilter">
+                        <option value="all">All Sports</option>
+                        <option value="tennis">Tennis</option>
+                        <option value="basketball">Basketball</option>
+                        <option value="football">Football</option>
+                        <option value="swimming">Swimming</option>
+                        <option value="volleyball">Volleyball</option>
+                        <option value="badminton">Badminton</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="availabilityFilter">Availability:</label>
+                    <select id="availabilityFilter">
+                        <option value="all">All Facilities</option>
+                        <option value="available">Available Now</option>
+                        <option value="busy">Currently Busy</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Facilities Grid -->
+            <div class="facilities-grid" id="facilitiesGrid">
+                <!-- Facilities will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/facalities.js"></script>
+</body>
+</html>
