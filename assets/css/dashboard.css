@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    min-height: 100vh;
+    color: #166534;
+}
+
+.dashboard-container {
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background: white;
+    border-bottom: 1px solid #bbf7d0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #166534;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #15803d;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.btn-outline:hover {
+    background: #f0fdf4;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.action-btn {
+    justify-content: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.action-btn:last-child {
+    margin-bottom: 0;
+}
+
+/* Icons */
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.stat-icon {
+    width: 3rem;
+    height: 3rem;
+    color: #22c55e;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #bbf7d0;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-content {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #16a34a;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #166534;
+    margin-bottom: 0.25rem;
+}
+
+.stat-change {
+    font-size: 0.875rem;
+    color: #22c55e;
+}
+
+/* Content Grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border: 1px solid #bbf7d0;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    padding: 1.5rem 1.5rem 0;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 0.5rem;
+}
+
+.card-description {
+    color: #16a34a;
+    font-size: 0.875rem;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Sports Grid */
+.sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.sport-card {
+    padding: 1rem;
+    border: 1px solid #bbf7d0;
+    border-radius: 0.5rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sport-card:hover {
+    border-color: #86efac;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.sport-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.sport-info {
+    display: flex;
+    align-items: center;
+}
+
+.sport-icon {
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+}
+
+.sport-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #166534;
+}
+
+.sport-price {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #16a34a;
+}
+
+.sport-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #16a34a;
+    margin-bottom: 0.75rem;
+}
+
+.available {
+    font-weight: 500;
+}
+
+/* Bookings */
+.bookings-list {
+    margin-bottom: 1rem;
+}
+
+.booking-item {
+    padding: 0.75rem;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.booking-item:last-child {
+    margin-bottom: 0;
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.booking-sport {
+    font-weight: 500;
+    color: #166534;
+}
+
+.status {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.status-confirmed {
+    background: #bbf7d0;
+    color: #166534;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.booking-court {
+    font-size: 0.875rem;
+    color: #16a34a;
+    margin-bottom: 0.25rem;
+}
+
+.booking-datetime {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #22c55e;
+}
+
+.booking-datetime svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+.booking-datetime .time {
+    margin-left: 0.75rem;
+}
+
+/* Sidebar styles are defined in content-grid */
+
+/* Quick Actions */
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-content {
+        padding: 0 1rem;
+    }
+    
+    .header-right {
+        gap: 0.5rem;
+    }
+    
+    .btn {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sports-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: center;
+    }
+}
