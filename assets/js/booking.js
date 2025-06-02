@@ -1,3 +1,4 @@
+
 // Booking page functionality
 document.addEventListener('DOMContentLoaded', function() {
     initBookingPage();
@@ -5,151 +6,200 @@ document.addEventListener('DOMContentLoaded', function() {
     initBookingModal();
     initDatePicker();
     initMobileMenu();
+    initProToggle();
 });
 
 const facilitiesData = [
     {
         id: 1,
-        name: "Main Football Stadium",
+        name: "Olympic Stadium Madrid",
         sport: "football",
-        description: "Professional-grade football stadium with natural grass field and seating for 500 spectators.",
-        features: ["Natural grass field", "Floodlights", "Changing rooms", "Spectator seating"],
-        price: 150,
+        country: "Spain",
+        city: "Madrid",
+        description: "World-class Olympic stadium with natural grass field and seating for 80,000 spectators.",
+        features: ["Natural grass field", "Floodlights", "VIP boxes", "Olympic facilities"],
+        price: 250,
         image: "https://images.unsplash.com/photo-1459865264687-595d652de67e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 22,
-        availability: "6 AM - 11 PM"
+        availability: "6 AM - 11 PM",
+        rating: 4.9
     },
     {
         id: 2,
-        name: "Training Football Field",
+        name: "Wembley Training Center",
         sport: "football", 
-        description: "Smaller training field perfect for practice sessions and youth games.",
+        country: "England",
+        city: "London",
+        description: "Professional training facility with artificial turf and modern amenities.",
         features: ["Artificial turf", "Goal posts", "Changing rooms", "Equipment storage"],
-        price: 80,
+        price: 180,
         image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 16,
-        availability: "24/7"
+        availability: "24/7",
+        rating: 4.7
     },
     {
         id: 3,
-        name: "Indoor Basketball Court A",
+        name: "Madison Square Garden Court",
         sport: "basketball",
-        description: "Professional indoor basketball court with wooden flooring and adjustable hoops.",
-        features: ["Professional flooring", "Adjustable hoops", "Scoreboard", "Air conditioning"],
-        price: 100,
+        country: "USA",
+        city: "New York",
+        description: "Iconic basketball court with professional wooden flooring and world-class facilities.",
+        features: ["Professional flooring", "LED scoreboard", "VIP seating", "Air conditioning"],
+        price: 300,
         image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 10,
-        availability: "24/7"
+        availability: "24/7",
+        rating: 5.0
     },
     {
         id: 4,
-        name: "Outdoor Basketball Court",
+        name: "Venice Beach Court",
         sport: "basketball",
-        description: "Outdoor basketball court with streetball atmosphere and city views.",
-        features: ["Outdoor court", "Street lighting", "Multiple hoops", "Bench seating"],
-        price: 60,
+        country: "USA",
+        city: "Los Angeles",
+        description: "Famous outdoor basketball court with ocean views and streetball atmosphere.",
+        features: ["Outdoor court", "Ocean view", "Multiple hoops", "Beach access"],
+        price: 120,
         image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 10,
-        availability: "6 AM - 10 PM"
+        availability: "6 AM - 10 PM",
+        rating: 4.5
     },
     {
         id: 5,
-        name: "Tennis Court A",
+        name: "Wimbledon Centre Court",
         sport: "tennis",
-        description: "Professional clay tennis court with high-quality surface and lighting.",
-        features: ["Clay surface", "Professional nets", "Court lighting", "Equipment rental"],
-        price: 75,
+        country: "England",
+        city: "London",
+        description: "World-famous grass tennis court with retractable roof and royal box.",
+        features: ["Grass surface", "Retractable roof", "Royal box", "Championship history"],
+        price: 400,
         image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 4,
-        availability: "6 AM - 10 PM"
+        availability: "6 AM - 10 PM",
+        rating: 5.0
     },
     {
         id: 6,
-        name: "Tennis Court B", 
+        name: "Roland Garros Court", 
         sport: "tennis",
-        description: "Hard court tennis facility with modern amenities and viewing area.",
-        features: ["Hard surface", "Viewing area", "Equipment storage", "Water fountain"],
-        price: 70,
+        country: "France",
+        city: "Paris",
+        description: "Famous clay tennis court from the French Open with professional amenities.",
+        features: ["Clay surface", "Stadium seating", "Professional nets", "Historic venue"],
+        price: 350,
         image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 4,
-        availability: "6 AM - 10 PM"
+        availability: "6 AM - 10 PM",
+        rating: 4.8
     },
     {
         id: 7,
-        name: "Olympic Swimming Pool",
+        name: "Tokyo Aquatic Centre",
         sport: "swimming",
-        description: "Olympic-size swimming pool with heated water and professional timing systems.",
-        features: ["Olympic size", "Heated water", "Timing systems", "Lifeguard service"],
-        price: 50,
+        country: "Japan",
+        city: "Tokyo",
+        description: "Olympic swimming facility with heated pools and cutting-edge timing systems.",
+        features: ["Olympic pools", "Heated water", "Electronic timing", "Diving platforms"],
+        price: 200,
         image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 50,
-        availability: "6 AM - 10 PM"
+        availability: "6 AM - 10 PM",
+        rating: 4.9
     },
     {
         id: 8,
-        name: "Training Pool",
+        name: "Sydney Olympic Pool",
         sport: "swimming",
-        description: "Smaller heated pool perfect for training and swimming lessons.",
-        features: ["25m length", "Heated water", "Lane dividers", "Shallow end"],
-        price: 30,
+        country: "Australia",
+        city: "Sydney",
+        description: "World-class aquatic center with multiple pools and spectacular harbor views.",
+        features: ["Multiple pools", "Harbor views", "Lane dividers", "Spectator seating"],
+        price: 150,
         image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 20,
-        availability: "7 AM - 9 PM"
+        availability: "7 AM - 9 PM",
+        rating: 4.6
     },
     {
         id: 9,
-        name: "Indoor Volleyball Court",
+        name: "Rio Olympic Volleyball Arena",
         sport: "volleyball",
-        description: "Professional indoor volleyball court with spring-loaded flooring.",
-        features: ["Spring flooring", "Professional nets", "Scoreboard", "Seating area"],
-        price: 80,
+        country: "Brazil",
+        city: "Rio de Janeiro",
+        description: "Professional indoor volleyball arena with spring-loaded flooring and Olympic heritage.",
+        features: ["Spring flooring", "Olympic nets", "Digital scoreboard", "VIP seating"],
+        price: 220,
         image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 12,
-        availability: "8 AM - 10 PM"
+        availability: "8 AM - 10 PM",
+        rating: 4.7
     },
     {
         id: 10,
-        name: "Beach Volleyball Court",
+        name: "Copacabana Beach Volleyball",
         sport: "volleyball",
-        description: "Outdoor beach volleyball court with real sand and ocean breeze simulation.",
-        features: ["Real sand", "Beach nets", "Outdoor lighting", "Shower facilities"],
-        price: 65,
+        country: "Brazil",
+        city: "Rio de Janeiro",
+        description: "Iconic beach volleyball courts on world-famous Copacabana beach.",
+        features: ["Real beach sand", "Ocean view", "Beach nets", "Tropical atmosphere"],
+        price: 180,
         image: "https://images.unsplash.com/photo-1594736797933-d0701ba0d2de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 8,
-        availability: "8 AM - 8 PM"
+        availability: "8 AM - 8 PM",
+        rating: 4.8
     },
     {
         id: 11,
-        name: "Badminton Court 1",
+        name: "All England Badminton Club",
         sport: "badminton",
-        description: "Indoor badminton court with proper ventilation and high-quality flooring.",
-        features: ["Indoor court", "Proper ventilation", "Quality flooring", "Equipment available"],
-        price: 60,
+        country: "England",
+        city: "Birmingham",
+        description: "Historic badminton venue with traditional wooden flooring and championship courts.",
+        features: ["Wooden flooring", "Championship nets", "Traditional venue", "Equipment included"],
+        price: 160,
         image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 4,
-        availability: "7 AM - 11 PM"
+        availability: "7 AM - 11 PM",
+        rating: 4.5
     },
     {
         id: 12,
-        name: "Badminton Court 2",
+        name: "Asian Games Badminton Hall",
         sport: "badminton", 
-        description: "Second indoor badminton court with the same high standards and amenities.",
-        features: ["Indoor court", "Air conditioning", "Equipment rental", "Score display"],
-        price: 60,
+        country: "China",
+        city: "Beijing",
+        description: "Modern badminton facility with air conditioning and professional-grade courts.",
+        features: ["Climate control", "Professional courts", "Equipment rental", "Spectator area"],
+        price: 140,
         image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         capacity: 4,
-        availability: "7 AM - 11 PM"
+        availability: "7 AM - 11 PM",
+        rating: 4.4
     }
 ];
 
 let selectedSport = 'all';
 let filteredFacilities = [...facilitiesData];
 let selectedFacility = null;
+let favorites = new Set();
+let isPro = false;
 
 function initBookingPage() {
     renderSportCards();
     renderFacilities();
     updateFacilitiesCount();
+    initSearch();
+}
+
+function initSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            applyFilters();
+        });
+    }
 }
 
 function renderSportCards() {
@@ -174,7 +224,7 @@ function renderSportCards() {
                 <i class="${sport.icon}"></i>
             </div>
             <h3>${sport.name}</h3>
-            <p>${sport.count} facilities available</p>
+            <p>${sport.count} facilities</p>
         </div>
     `).join('');
 }
@@ -209,11 +259,11 @@ function initFilters() {
     const clearFilters = document.getElementById('clear-filters');
     if (clearFilters) {
         clearFilters.addEventListener('click', function() {
-            // Reset all filters
-            if (priceRange) priceRange.value = 200;
-            if (priceValue) priceValue.textContent = '200';
+            if (priceRange) priceRange.value = 300;
+            if (priceValue) priceValue.textContent = '300';
             checkboxes.forEach(cb => cb.checked = true);
             selectedSport = 'all';
+            document.getElementById('search-input').value = '';
             applyFilters();
             renderSportCards();
         });
@@ -221,22 +271,21 @@ function initFilters() {
 }
 
 function applyFilters() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
     const maxPrice = parseInt(document.getElementById('price-range').value);
     const showMorning = document.getElementById('morning').checked;
     const showAfternoon = document.getElementById('afternoon').checked;
     const showEvening = document.getElementById('evening').checked;
 
     filteredFacilities = facilitiesData.filter(facility => {
-        // Sport filter
         const sportMatch = selectedSport === 'all' || facility.sport === selectedSport;
-        
-        // Price filter
+        const searchMatch = facility.name.toLowerCase().includes(searchQuery) ||
+                           facility.country.toLowerCase().includes(searchQuery) ||
+                           facility.city.toLowerCase().includes(searchQuery);
         const priceMatch = facility.price <= maxPrice;
-        
-        // Availability filter (simplified - just check if any time period is selected)
         const timeMatch = showMorning || showAfternoon || showEvening;
         
-        return sportMatch && priceMatch && timeMatch;
+        return sportMatch && searchMatch && priceMatch && timeMatch;
     });
 
     renderFacilities();
@@ -258,52 +307,100 @@ function renderFacilities() {
         return;
     }
 
-    container.innerHTML = filteredFacilities.map(facility => `
-        <div class="facility-card" onclick="openBookingModal(${facility.id})">
-            <div class="facility-image">
-                <img src="${facility.image}" alt="${facility.name}">
-                <div class="facility-sport">${facility.sport.charAt(0).toUpperCase() + facility.sport.slice(1)}</div>
-            </div>
-            <div class="facility-content">
-                <h3 class="facility-title">${facility.name}</h3>
-                <p class="facility-description">${facility.description}</p>
-                
-                <div class="facility-features">
-                    ${facility.features.map(feature => `
-                        <span class="feature-tag">${feature}</span>
-                    `).join('')}
-                </div>
-                
-                <div class="facility-details">
-                    <div class="detail-item">
-                        <i class="fas fa-users"></i>
-                        <span>Up to ${facility.capacity} people</span>
+    container.innerHTML = filteredFacilities.map(facility => {
+        const discountedPrice = isPro ? Math.round(facility.price * 0.8) : facility.price;
+        const hasDiscount = isPro && discountedPrice < facility.price;
+        
+        return `
+            <div class="facility-card" onclick="openBookingModal(${facility.id})">
+                <div class="facility-image">
+                    <img src="${facility.image}" alt="${facility.name}">
+                    <div class="facility-sport">${facility.sport.charAt(0).toUpperCase() + facility.sport.slice(1)}</div>
+                    <div class="facility-country">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${facility.country}
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>${facility.availability}</span>
-                    </div>
-                </div>
-                
-                <div class="facility-footer">
-                    <div class="facility-price">
-                        <span class="price">$${facility.price}</span>
-                        <span class="price-unit">/hour</span>
-                    </div>
-                    <button class="btn btn-primary btn-small">
-                        <i class="fas fa-calendar-plus"></i>
-                        Book Now
+                    <button class="favorite-btn ${favorites.has(facility.id) ? 'active' : ''}" 
+                            onclick="event.stopPropagation(); toggleFavorite(${facility.id})">
+                        <i class="fas fa-heart"></i>
                     </button>
+                    <div class="facility-rating">
+                        <i class="fas fa-star" style="color: #f59e0b;"></i>
+                        ${facility.rating}
+                    </div>
+                </div>
+                <div class="facility-content">
+                    <h3 class="facility-title">${facility.name}</h3>
+                    <p class="facility-description">${facility.description}</p>
+                    
+                    <div class="facility-features">
+                        ${facility.features.slice(0, 3).map(feature => `
+                            <span class="feature-tag">${feature}</span>
+                        `).join('')}
+                        ${facility.features.length > 3 ? `<span class="feature-tag">+${facility.features.length - 3} more</span>` : ''}
+                    </div>
+                    
+                    <div class="facility-details">
+                        <div class="detail-item">
+                            <i class="fas fa-users"></i>
+                            <span>Up to ${facility.capacity} people</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>${facility.availability}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="facility-footer">
+                        <div class="facility-price">
+                            <div class="price-main">
+                                ${hasDiscount ? `<span class="price-original">$${facility.price}</span>` : ''}
+                                <span class="price">$${discountedPrice}</span>
+                                <span class="price-unit">/hour</span>
+                            </div>
+                            ${hasDiscount ? '<div class="pro-discount">Pro 20% OFF</div>' : ''}
+                        </div>
+                        <button class="btn btn-primary btn-small">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
+}
+
+function toggleFavorite(facilityId) {
+    if (favorites.has(facilityId)) {
+        favorites.delete(facilityId);
+    } else {
+        favorites.add(facilityId);
+    }
+    renderFacilities();
 }
 
 function updateFacilitiesCount() {
     const countElement = document.getElementById('facilities-count');
     if (countElement) {
         countElement.textContent = filteredFacilities.length;
+    }
+}
+
+function initProToggle() {
+    const proToggle = document.getElementById('pro-toggle');
+    if (proToggle) {
+        proToggle.addEventListener('click', function() {
+            isPro = !isPro;
+            if (isPro) {
+                this.innerHTML = '<i class="fas fa-star"></i><span>Pro User</span>';
+                this.classList.add('active');
+            } else {
+                this.innerHTML = '<i class="fas fa-star"></i><span>Upgrade to Pro</span>';
+                this.classList.remove('active');
+            }
+            renderFacilities();
+        });
     }
 }
 
@@ -316,14 +413,12 @@ function initBookingModal() {
         if (e.target === modal) closeBookingModal();
     });
 
-    // Form submission
     const form = document.getElementById('booking-form');
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         handleBookingSubmission();
     });
 
-    // Update summary when form changes
     const formInputs = form.querySelectorAll('input, select');
     formInputs.forEach(input => {
         input.addEventListener('change', updateBookingSummary);
@@ -350,7 +445,6 @@ function closeBookingModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
     
-    // Reset form
     document.getElementById('booking-form').reset();
     selectedFacility = null;
 }
@@ -365,12 +459,10 @@ function generateTimeSlots() {
         
         timeSelect.innerHTML = '<option value="">Select time</option>';
         
-        // Generate time slots from 6 AM to 10 PM
         for (let hour = 6; hour <= 22; hour++) {
             const timeString = `${hour.toString().padStart(2, '0')}:00`;
             const displayTime = hour > 12 ? `${hour - 12}:00 PM` : (hour === 12 ? '12:00 PM' : `${hour}:00 AM`);
             
-            // If it's today, only show future times
             const isToday = selectedDate.toDateString() === today.toDateString();
             const currentHour = today.getHours();
             
@@ -388,7 +480,6 @@ function updateBookingSummary() {
     const time = document.getElementById('start-time').value;
     const duration = document.getElementById('duration').value;
     
-    // Update summary elements
     document.getElementById('summary-facility').textContent = selectedFacility.name;
     
     if (date && time) {
@@ -404,12 +495,24 @@ function updateBookingSummary() {
         document.getElementById('summary-duration').textContent = `${duration} hour${duration > 1 ? 's' : ''}`;
         
         const basePrice = selectedFacility.price * parseInt(duration);
+        const discountedPrice = isPro ? Math.round(basePrice * 0.8) : basePrice;
+        const discount = basePrice - discountedPrice;
+        
         document.getElementById('summary-base-price').textContent = `$${basePrice}`;
-        document.getElementById('summary-total').textContent = `$${basePrice}`;
+        
+        if (isPro && discount > 0) {
+            document.getElementById('discount-item').style.display = 'flex';
+            document.getElementById('summary-discount').textContent = `-$${discount}`;
+        } else {
+            document.getElementById('discount-item').style.display = 'none';
+        }
+        
+        document.getElementById('summary-total').textContent = `$${discountedPrice}`;
     } else {
         document.getElementById('summary-duration').textContent = 'Not selected';
         document.getElementById('summary-base-price').textContent = '$0';
         document.getElementById('summary-total').textContent = '$0';
+        document.getElementById('discount-item').style.display = 'none';
     }
 }
 
@@ -430,7 +533,6 @@ function handleBookingSubmission() {
         players: document.getElementById('players').value
     };
 
-    // Save booking to localStorage
     const bookings = JSON.parse(localStorage.getItem('sportzone_bookings') || '[]');
     const bookingId = 'BK' + Date.now();
     
@@ -449,7 +551,6 @@ function handleBookingSubmission() {
 }
 
 function initDatePicker() {
-    // Set minimum date to today
     const dateInput = document.getElementById('booking-date');
     if (dateInput) {
         const today = new Date().toISOString().split('T')[0];
