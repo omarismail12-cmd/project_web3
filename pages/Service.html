@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service</title>
+    <meta name="description" content="Find and reserve the best sports facilities near you. Book your perfect sports court in seconds with Mala3b.">
+    <link rel="stylesheet" href="/assets/css/Service.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">mala3b</h1>
+            </div>
+            
+            <nav class="nav-desktop">
+                <a href="/pages/home.html" class="nav-link active">Home</a>
+                <a href="#courts" class="nav-link">Find Courts</a>
+                <a href="#add-court" class="nav-link">Add Court</a>
+                <a href="#bookings" class="nav-link">My Bookings</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn-ghost">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <nav class="nav-mobile" id="mobileNav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#courts" class="nav-link">Find Courts</a>
+            <a href="#add-court" class="nav-link">Add Court</a>
+            <a href="#bookings" class="nav-link">My Bookings</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <div class="mobile-auth">
+                <button class="btn-ghost">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Book Your Perfect Sports Court in <span class="text-gradient">Seconds</span></h1>
+                    <p class="hero-description">Find and reserve the best sports facilities near you. Play your favorite sports without the hassle of phone calls or waiting in line.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary btn-large">
+                            <i class="fas fa-play-circle"></i>
+                            Get Started
+                        </button>
+                        <button class="btn-outline btn-large">
+                            <i class="fas fa-info-circle"></i>
+                            How It Works
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="booking-card">
+                    <h3 class="booking-title">
+                        <i class="fas fa-calendar-check"></i>
+                        Quick Booking
+                    </h3>
+                    <form class="booking-form" id="bookingForm">
+                        <div class="form-group">
+                            <label for="province">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Province
+                            </label>
+                            <select id="province" required>
+                                <option value="">Select province</option>
+                                <option value="cairo">Cairo</option>
+                                <option value="giza">Giza</option>
+                                <option value="alexandria">Alexandria</option>
+                                <option value="luxor">Luxor</option>
+                                <option value="aswan">Aswan</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sport">
+                                <i class="fas fa-futbol"></i>
+                                Sport Type
+                            </label>
+                            <select id="sport" required>
+                                <option value="">Select sport</option>
+                                <option value="football">Football</option>
+                                <option value="basketball">Basketball</option>
+                                <option value="tennis">Tennis</option>
+                                <option value="paddle">Paddle Tennis</option>
+                                <option value="volleyball">Volleyball</option>
+                                <option value="badminton">Badminton</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="court">
+                                <i class="fas fa-building"></i>
+                                Court Name / ID
+                            </label>
+                            <input type="text" id="court" placeholder="Enter court name or ID">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">
+                                    <i class="fas fa-calendar"></i>
+                                    Date
+                                </label>
+                                <input type="date" id="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">
+                                    <i class="fas fa-clock"></i>
+                                    Time
+                                </label>
+                                <input type="time" id="time" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-block">
+                            <i class="fas fa-search"></i>
+                            Find Available Courts
+                        </button>
+                        
+                        <p class="form-help">
+                            Need help? <a href="#contact">Contact our support team</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Mala3b</h2>
+                <p class="section-subtitle">Experience the future of sports court booking</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Easy Booking</h3>
+                    <p>Book your preferred court in just a few clicks, anytime and anywhere with our intuitive platform.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Wide Variety</h3>
+                    <p>Access to hundreds of sports facilities across multiple sports and locations throughout the country.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Pay safely online with multiple payment options and instant confirmation for peace of mind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated team is always ready to assist you with any questions or booking issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Courts Section -->
+    <section class="popular-courts" id="courts">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Courts</h2>
+                <p class="section-subtitle">Top-rated facilities chosen by our community</p>
+            </div>
+            
+            <div class="courts-container">
+                <div class="court-card">
+                    <div class="court-image">
+                        <img src="https://images.pexels.com/photos/1263426/pexels-photo-1263426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Green Field Stadium">
+                        <div class="court-badge">Football</div>
+                        <div class="court-favorite">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="court-info">
+                        <h3>Green Field Stadium</h3>
+                        <p class="court-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Cairo, Maadi
+                        </p>
+                        <div class="court-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.2 (128 reviews)</span>
+                        </div>
+                        <div class="court-price">
+                            <span class="price">$25</span>
+                            <span class="period">/ hour</span>
+                        </div>
+                        <button class="btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <div class="court-image">
+                        <img src="https://images.pexels.com/photos/2277981/pexels-photo-2277981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Downtown Arena">
+                        <div class="court-badge">Basketball</div>
+                        <div class="court-favorite">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="court-info">
+                        <h3>Downtown Arena</h3>
+                        <p class="court-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Cairo, Downtown
+                        </p>
+                        <div class="court-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8 (95 reviews)</span>
+                        </div>
+                        <div class="court-price">
+                            <span class="price">$20</span>
+                            <span class="period">/ hour</span>
+                        </div>
+                        <button class="btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <div class="court-image">
+                        <img src="https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ace Tennis Club">
+                        <div class="court-badge">Tennis</div>
+                        <div class="court-favorite">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="court-info">
+                        <h3>Ace Tennis Club</h3>
+                        <p class="court-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Giza, 6th October
+                        </p>
+                        <div class="court-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.3 (87 reviews)</span>
+                        </div>
+                        <div class="court-price">
+                            <span class="price">$30</span>
+                            <span class="period">/ hour</span>
+                        </div>
+                        <button class="btn-secondary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Features Section -->
+    <section class="app-features">
+        <div class="container">
+            <div class="app-features-content">
+                <div class="features-text">
+                    <h2>Manage Your Sports Experience</h2>
+                    <p>Our platform offers comprehensive tools for both players and court owners to streamline the entire booking process.</p>
+                    
+                    <ul class="features-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Instant court booking and reservation management
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Secure payment processing with multiple options
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Court owner dashboard for facility management
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Real-time notifications for bookings and updates
+                        </li>
+                    </ul>
+                    
+                    <div class="features-actions">
+                        <button class="btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Start Using Mala3b
+                        </button>
+                        <a href="#" class="text-link">
+                            Learn more about our business solutions
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="features-image">
+                    <img src="https://images.pexels.com/photos/8112120/pexels-photo-8112120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sports facility dashboard">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Users Say</h2>
+                <p class="section-subtitle">Real experiences from our satisfied customers</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Mala3b made it so easy to find and book football courts for our weekly games. The whole process takes less than a minute!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Ahmed Hassan">
+                        <div class="author-info">
+                            <h4>Ahmed Hassan</h4>
+                            <p>Football Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"As a tennis court owner, Mala3b has helped increase our bookings by 40%. The platform is intuitive and makes management simple."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Layla Nour">
+                        <div class="author-info">
+                            <h4>Layla Nour</h4>
+                            <p>Court Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I use Mala3b weekly to organize basketball games with friends. The filtering options make it easy to find courts with the right specifications."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Omar Farid">
+                        <div class="author-info">
+                            <h4>Omar Farid</h4>
+                            <p>Basketball Player</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to elevate your sports experience?</h2>
+                <p>Join thousands of sports enthusiasts who book with Mala3b every day and discover the future of court booking.</p>
+                <div class="cta-buttons">
+                    <button class="btn-white">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up Now
+                    </button>
+                    <button class="btn-outline-white">
+                        <i class="fas fa-search"></i>
+                        Explore Courts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="logo">mala3b</h3>
+                    <p>The easiest way to book sports facilities and connect with your favorite sports community.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <a href="#home">Home</a>
+                        <a href="#courts">Find Courts</a>
+                        <a href="#add-court">Add Your Court</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#about">About Us</a>
+                        <a href="#blog">Blog</a>
+                        <a href="#careers">Careers</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#help">Help Center</a>
+                        <a href="#faq">FAQs</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#privacy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mala3b. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/Service.js"></script>
+</body>
+</html>
