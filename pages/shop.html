@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportShop - Find Your Perfect Sports Gear</title>
+    <link rel="stylesheet" href="/assets/css/shop.css">
+</head>
+<body>
+    <div class="shop-container">
+        <!-- Header -->
+        <header class="shop-header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <h1 class="logo-text">SportShop</h1>
+                </div>
+                
+                <button class="cart-btn" onclick="goToCart()">
+                    <span class="cart-icon">🛒</span>
+                    Cart
+                    <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">
+                    Find Your Perfect
+                    <span class="hero-title-highlight">Sports Gear</span>
+                </h2>
+                <p class="hero-description">
+                    Discover premium equipment for Football, Basketball, Tennis, and Swimming. 
+                    Choose your sport and explore our curated collection.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sport Filter Section -->
+        <section class="filter-section">
+            <div class="filter-header">
+                <span class="filter-icon">🔍</span>
+                <h3 class="filter-title">Choose Your Sport</h3>
+            </div>
+            
+            <div id="sport-filter" class="sport-filter">
+                <!-- Sport filter cards will be rendered here -->
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="products-header">
+                <h3 id="products-title" class="products-title">All Products</h3>
+                <span id="products-count" class="products-count">12 products</span>
+            </div>
+            
+            <div id="products-grid" class="products-grid">
+                <!-- Product cards will be rendered here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/assets/js/cart.js"></script>
+</body>
+</html>

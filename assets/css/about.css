@@ -1819,7 +1819,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Enhanced focus styles for accessibility - Updated to Green */
-:focus-visible {
+*:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--sport-green-500), 0 0 0 4px rgba(34, 197, 94, 0.2);
 }

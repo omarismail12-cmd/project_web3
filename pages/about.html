@@ -18,70 +18,44 @@
   <link rel="stylesheet" href="/assets/css/about.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" id="navbar">
-    <div class="container">
-      <div class="nav-content">
-        <!-- Logo -->
-        <div class="nav-logo">
-          <div class="logo-icon-wrapper">
-            <i data-lucide="calendar" class="logo-icon"></i>
-          </div>
-          <div class="logo-text">
-            <span class="brand-name">Mala3b</span>
-            <span class="brand-subtitle">Sport Club</span>
-          </div>
-        </div>
-
-        <!-- Desktop Navigation -->
-        <div class="nav-links desktop-nav" id="navLinks">
-          <a href="#" class="nav-link">Home</a>
-          <a href="#about" class="nav-link active">About</a>
-          <a href="#booking" class="nav-link">Booking</a>
-          <div class="nav-dropdown">
-            <button class="nav-link dropdown-toggle">
-              Services
-              <i data-lucide="chevron-down" class="dropdown-icon"></i>
-            </button>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">Field Rental</a>
-              <a href="#" class="dropdown-item">Membership Plans</a>
-              <a href="#" class="dropdown-item">Tournaments</a>
+      <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">mala3b</h1>
             </div>
-          </div>
-          <a href="#contact" class="nav-link">Contact</a>
+            
+            <nav class="nav-desktop">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#courts" class="nav-link">Find Courts</a>
+                <a href="#add-court" class="nav-link">Add Court</a>
+                <a href="#bookings" class="nav-link">My Bookings</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn-ghost">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-
-        <!-- CTA Buttons -->
-        <div class="nav-actions desktop-nav">
-          <button class="btn-secondary">Sign In</button>
-          <button class="btn-primary">Get Started</button>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="menu-toggle" id="menuToggle">
-          <i data-lucide="menu" class="menu-icon"></i>
-          <i data-lucide="x" class="close-icon hidden"></i>
-        </button>
-      </div>
-
-      <!-- Mobile Menu -->
-      <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-nav-links">
-          <a href="#" class="mobile-nav-link">Home</a>
-          <a href="#about" class="mobile-nav-link active">About</a>
-          <a href="#booking" class="mobile-nav-link">Booking</a>
-          <a href="#services" class="mobile-nav-link">Services</a>
-          <a href="#contact" class="mobile-nav-link">Contact</a>
-        </div>
-        <div class="mobile-nav-actions">
-          <button class="btn-secondary mobile-btn">Sign In</button>
-          <button class="btn-primary mobile-btn">Get Started</button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
+        
+        <nav class="nav-mobile" id="mobileNav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#courts" class="nav-link">Find Courts</a>
+            <a href="#add-court" class="nav-link">Add Court</a>
+            <a href="#bookings" class="nav-link">My Bookings</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <div class="mobile-auth">
+                <button class="btn-ghost">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </div>
+        </nav>
+    </header>
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-background">

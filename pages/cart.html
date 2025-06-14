@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - SportShop</title>
+    <link rel="stylesheet" href="/assets/css/cart.css">
+</head>
+<body>
+    <div class="cart-container">
+        <!-- Header -->
+        <header class="cart-header">
+            <div class="header-content">
+                <button class="back-btn" onclick="goBackToShop()">
+                    <span class="arrow-left">←</span>
+                    Back to Shop
+                </button>
+                <h1 class="cart-title">Shopping Cart</h1>
+                <div></div>
+            </div>
+        </header>
+
+        <!-- Empty Cart State -->
+        <div id="empty-cart" class="empty-cart" style="display: none;">
+            <div class="empty-cart-content">
+                <div class="empty-cart-icon">🛍️</div>
+                <h2>Your cart is empty</h2>
+                <p>Start shopping to add items to your cart</p>
+                <button class="continue-shopping-btn" onclick="goBackToShop()">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Content -->
+        <div id="cart-content" class="cart-content">
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div id="cart-items-list"></div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-card">
+                        <h3>Order Summary</h3>
+                        <div class="summary-content">
+                            <div id="summary-items" class="summary-items"></div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-calculations">
+                                <div class="summary-row">
+                                    <span>Subtotal</span>
+                                    <span id="subtotal">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Shipping</span>
+                                    <span>Free</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Tax</span>
+                                    <span id="tax">$0.00</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <span id="total">$0.00</span>
+                            </div>
+                            
+                            <button class="checkout-btn" onclick="handleCheckout()">
+                                💳 Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/assets/js/cart.js"></script>
+</body>
+</html>
