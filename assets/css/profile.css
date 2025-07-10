@@ -102,53 +102,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Profile Container */
 .profile-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-6);
-  min-height: 100vh;
+  padding: var(--space-8) var(--space-6);
+
+ 
 }
 
-/* Header Styles */
-.header {
-  background: linear-gradient(135deg, var(--emerald-800) 0%, var(--emerald-900) 100%);
-  color: var(--white);
-  border-radius: var(--radius-2xl);
-  margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-xl);
-  overflow: hidden;
-  position: relative;
-}
 
-.header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-}
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-6) var(--space-8);
-  position: relative;
-  z-index: 10;
-}
-
-.logo {
-  font-size: 1.875rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--white);
-  text-decoration: none;
-  letter-spacing: -0.025em;
-  background: linear-gradient(135deg, var(--white) 0%, var(--emerald-100) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 /* Button Styles */
 .btn {

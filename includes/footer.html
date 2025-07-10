@@ -1,0 +1,102 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stadium Reservation - Header & Footer</title>
+    <link rel="stylesheet" href="/includes/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head><!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <span class="footer-brand-name">Mala3b Sport Club</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner for stadium bookings and sports facility reservations. 
+                        Play more, worry less with our premium facilities and excellent service.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/pages/home.html">Home</a></li>
+                        <li><a href="/pages/about.html">About Us</a></li>
+                        <li><a href="/pages/booking.html">Find Stadiums</a></li>
+                        <li><a href="bookings.html">My Bookings</a></li>
+                        <li><a href="/pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="/pages/booking.html">Stadium Rental</a></li>
+                        <li><a href="/pages/booking.html">Football Fields</a></li>
+                        <li><a href="/pages/booking.html">Basketball Courts</a></li>
+                        <li><a href="/pages/booking.html">Tennis Courts</a></li>
+                        <li><a href="/pages/event.html">Event Hosting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Contact Us</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Sports Avenue<br>San Francisco, CA 94107</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+14155552671">(415) 555-2671</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@mala3b.com">info@mala3b.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sun: 6AM - 11PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Mala3b Sport Club. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/pages/about.html">Privacy Policy</a>
+                    <a href="/pages/Service.html">Terms of Service</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+  
+  // Update current year
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+<script src="/includes/style.js"></script>
+</html>

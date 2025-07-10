@@ -18,44 +18,36 @@
   <link rel="stylesheet" href="/assets/css/about.css">
 </head>
 <body>
-      <header class="header">
-        <div class="container">
-            <div class="nav-brand">
-                <h1 class="logo">mala3b</h1>
-            </div>
-            
-            <nav class="nav-desktop">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#courts" class="nav-link">Find Courts</a>
-                <a href="#add-court" class="nav-link">Add Court</a>
-                <a href="#bookings" class="nav-link">My Bookings</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            
-            <div class="auth-buttons">
-                <button class="btn-ghost">Login</button>
-                <button class="btn-primary">Sign Up</button>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <header class="header"></header>
+ 
+
+        <!-- Desktop Navigation -->
+     
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-toggle" id="menuToggle">
+          <i data-lucide="menu" class="menu-icon"></i>
+          <i data-lucide="x" class="close-icon hidden"></i>
+        </button>
+      
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="#" class="mobile-nav-link">Home</a>
+          <a href="#about" class="mobile-nav-link active">About</a>
+          <a href="#booking" class="mobile-nav-link">Booking</a>
+          <a href="#services" class="mobile-nav-link">Services</a>
+          <a href="#contact" class="mobile-nav-link">Contact</a>
         </div>
-        
-        <nav class="nav-mobile" id="mobileNav">
-            <a href="#home" class="nav-link active">Home</a>
-            <a href="#courts" class="nav-link">Find Courts</a>
-            <a href="#add-court" class="nav-link">Add Court</a>
-            <a href="#bookings" class="nav-link">My Bookings</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <div class="mobile-auth">
-                <button class="btn-ghost">Login</button>
-                <button class="btn-primary">Sign Up</button>
-            </div>
-        </nav>
-    </header>
+        <div class="mobile-nav-actions">
+          <button class="btn-secondary mobile-btn">Sign In</button>
+          <button class="btn-primary mobile-btn">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-background">
@@ -487,90 +479,11 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <!-- Brand -->
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <div class="footer-logo-icon">
-              <i data-lucide="calendar"></i>
-            </div>
-            <span class="footer-brand-name">Mala3b Sport Club</span>
-          </div>
-          <p class="footer-description">
-            Your trusted partner for sports facility bookings since 2010. Play more, worry less.
-          </p>
-          <div class="footer-social">
-            <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
-            <a href="#" class="social-link"><i data-lucide="facebook"></i></a>
-            <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
-            <a href="#" class="social-link"><i data-lucide="youtube"></i></a>
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="footer-section">
-          <h3 class="footer-section-title">Quick Links</h3>
-          <ul class="footer-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#booking">Booking</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#">Sign Up</a></li>
-          </ul>
-        </div>
-
-        <!-- Services -->
-        <div class="footer-section">
-          <h3 class="footer-section-title">Our Services</h3>
-          <ul class="footer-links">
-            <li><a href="#">Field Rental</a></li>
-            <li><a href="#">Membership Plans</a></li>
-            <li><a href="#">Tournaments</a></li>
-            <li><a href="#">Sports Consultation</a></li>
-            <li><a href="#">Corporate Events</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-          <h3 class="footer-section-title">Contact Us</h3>
-          <ul class="footer-contact">
-            <li>
-              <i data-lucide="map-pin" class="contact-icon"></i>
-              <span>123 Sports Avenue<br>San Francisco, CA 94107</span>
-            </li>
-            <li>
-              <i data-lucide="phone" class="contact-icon"></i>
-              <a href="tel:+14155552671">(415) 555-2671</a>
-            </li>
-            <li>
-              <i data-lucide="mail" class="contact-icon"></i>
-              <a href="mailto:info@mala3b.com">info@mala3b.com</a>
-            </li>
-            <li>
-              <i data-lucide="clock" class="contact-icon"></i>
-              <span>Mon-Sun: 6AM - 11PM</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          &copy; <span id="currentYear"></span> Mala3b Sport Club. All rights reserved.
-        </p>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Sitemap</a>
-        </div>
-      </div>
-    </div>
+   
   </footer>
 
   <!-- Scripts -->
   <script src="/assets/js/about.js"></script>
+  <script src="/assets/js/injict.js"></script>
 </body>
 </html>

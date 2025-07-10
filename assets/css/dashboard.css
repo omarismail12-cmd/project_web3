@@ -15,34 +15,6 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
-.header {
-    background: white;
-    border-bottom: 1px solid #bbf7d0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 4rem;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #166534;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
 
 /* Buttons */
 .btn {

@@ -199,7 +199,7 @@ function showNotification(message, type = 'info') {
   existingNotifications.forEach(notification => notification.remove());
   
   const notification = document.createElement('div');
-  notification.className = notification notification-${type};
+  notification.className = `notification notification-${type}`;
   notification.innerHTML = `
     <div class="notification-content">
       <span class="notification-message">${message}</span>
@@ -392,7 +392,7 @@ window.addEventListener('scroll', () => {
   
   floatingElements.forEach((element, index) => {
     const rate = (scrolled * 0.1) * (index + 1);
-    element.style.transform = translateY(${rate}px) rotate(${12 + rate * 0.1}deg);
+    element.style.transform = `translateY(${rate}px) rotate(${12 + rate * 0.1}deg)`;
   });
 });
 

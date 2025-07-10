@@ -3,42 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Book Your Perfect Venue</title>
+    <title>SportZone - Book Your Perfect Venue</title>
     <link rel="stylesheet" href="/assets/css/booking.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>Sport<span>Zone</span></h1>
-                </div>
-                <nav class="main-nav" id="nav-menu">
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#booking" class="active">Booking</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#shop">Shop</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="header-actions">
-                    <div class="search-bar">
-                        <input type="search" placeholder="Search...">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </div>
-                    <button id="pro-toggle" class="btn btn-pro">
-                        <i class="fas fa-star"></i>
-                        <span>Upgrade to Pro</span>
-                    </button>
-                    <button class="menu-toggle" id="mobile-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- Header will be injected here -->
+   <header class="header"></header>
 
     <main>
         <!-- Hero Section -->
@@ -52,10 +23,9 @@
                     <h1 class="hero-title">SportZone</h1>
                     <p class="hero-description">Discover and book world-class sports facilities across the globe</p>
                     
-                    <!-- Search Bar -->
                     <div class="hero-search">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="search-input" placeholder="Search by facility name or country...">
+                        <input type="text" id="search-input" placeholder="Search by facility name or sport...">
                     </div>
                 </div>
             </div>
@@ -156,7 +126,7 @@
                         </div>
                         <div class="form-group">
                             <label for="players">Number of Players</label>
-                            <input type="number" id="players" min="1" max="20" value="1" required>
+                            <input type="number" id="players" min="1" max="50" value="1" required>
                         </div>
                     </div>
                     <div class="form-column">
@@ -180,10 +150,6 @@
                                     <span>Base Price:</span>
                                     <strong id="summary-base-price">$0</strong>
                                 </div>
-                                <div class="summary-item" id="discount-item" style="display: none;">
-                                    <span>Pro Discount (20%):</span>
-                                    <strong id="summary-discount">-$0</strong>
-                                </div>
                                 <div class="summary-item total">
                                     <span>Total:</span>
                                     <strong id="summary-total">$0</strong>
@@ -202,6 +168,9 @@
         </div>
     </div>
 
+    <!-- Footer will be injected here -->
+    <footer class="footer"></footer>
     <script src="/assets/js/booking.js"></script>
+    <script src="/assets/js/injict.js"></script>
 </body>
 </html>

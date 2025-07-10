@@ -1,100 +1,172 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Stadium Reservation</title>
     <link rel="stylesheet" href="/assets/css/contact.css">
 </head>
 <body>
-    <div class="container">
-        <section class="contact-section">
+    <header class="header"> </header>
+    <div class="min-h-screen bg-gradient">
+        <!-- Main Container -->
+        <div class="container">
             <!-- Header -->
-            <div class="header">
-                <h1>Contact Us</h1>
-                <p>Contact us about anything related to our company or services.<br>
-                   We'll do our best to get back to you as soon as possible.</p>
+            <div class="text-center header-section">
+                <h1 class="main-title">Stadium Reservation</h1>
+                <p class="subtitle">
+                    Book our premium stadium facility for your next event. From sports tournaments to corporate gatherings, we provide world-class venue services.
+                </p>
             </div>
 
-            <!-- Main Content -->
-            <div class="content-container">
-                <!-- Contact Form -->
-                <div class="form-container">
-                    <form id="contactForm" action="send-email.php" method="POST">
-                        <!-- Name and Phone Row -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder="Name *" required>
+            <!-- Main Content Grid -->
+            <div class="content-grid">
+                <!-- Reservation Form -->
+                <div class="form-section">
+                    <div class="form-container">
+                        <h2 class="form-title">Reservation Details</h2>
+                        
+                        <form id="reservationForm" class="reservation-form">
+                            <!-- Personal Information -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Full Name <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        class="form-input"
+                                        placeholder="Enter your full name"
+                                        required
+                                    />
+                                    <span class="error-message" id="name-error"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Phone Number <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        class="form-input"
+                                        placeholder="Enter your phone number"
+                                        required
+                                    />
+                                    <span class="error-message" id="phone-error"></span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Email Address <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        class="form-input"
+                                        placeholder="Enter your email"
+                                        required
+                                    />
+                                    <span class="error-message" id="email-error"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Company/Organization</label>
+                                    <input
+                                        type="text"
+                                        name="company"
+                                        class="form-input"
+                                        placeholder="Enter company name (optional)"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Email and Company Row -->
-                        <div class="form-row">
+                            <!-- Additional Requests -->
                             <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="Email *" required>
+                                <label class="form-label">Additional Requests</label>
+                                <textarea
+                                    name="additionalRequests"
+                                    rows="4"
+                                    class="form-textarea"
+                                    placeholder="Please describe any special requirements, equipment needs, catering requests, etc."
+                                ></textarea>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="company" name="company" placeholder="Company">
-                            </div>
-                        </div>
 
-                        <!-- Subject -->
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject *" required>
-                        </div>
-
-                        <!-- Question -->
-                        <div class="form-group">
-                            <textarea id="question" name="question" placeholder="Question *" required></textarea>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="form-group">
-                            <button type="submit" id="submitBtn">
-                                <span class="submit-text">Submit</span>
+                            <!-- Submit Button -->
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                <span class="submit-text">Submit Reservation Request</span>
                                 <span class="loader" id="loader"></span>
                             </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
 
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <h3>My Company</h3>
-                    
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <span>📍</span>
-                        </div>
-                        <div>
-                            <p>3575 Fake Buena Vista Avenue</p>
-                        </div>
-                    </div>
+                <!-- Stadium Information Sidebar -->
+                <div class="info-section">
+                    <div class="info-container">
+                        <h3 class="info-title">Elite Stadium</h3>
+                        
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon">📍</div>
+                                <div class="info-content">
+                                    <h4>Location</h4>
+                                    <p>3575 Champions Boulevard<br>Stadium District, SD 90210</p>
+                                </div>
+                            </div>
 
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <span>📞</span>
-                        </div>
-                        <div>
-                            <p>+1 555-555-5556</p>
-                        </div>
-                    </div>
+                            <div class="info-item">
+                                <div class="info-icon">📞</div>
+                                <div class="info-content">
+                                    <h4>Phone</h4>
+                                    <p>+1 (555) 123-STADIUM</p>
+                                </div>
+                            </div>
 
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <span>✉️</span>
-                        </div>
-                        <div>
-                            <p>info@yourcompany.example.com</p>
-                        </div>
-                    </div>
+                            <div class="info-item">
+                                <div class="info-icon">✉️</div>
+                                <div class="info-content">
+                                    <h4>Email</h4>
+                                    <p>reservations@elitestadium.com</p>
+                                </div>
+                            </div>
 
-                    <!-- Decorative Elements -->
-                    <div class="decorative-element">
-                        <div class="dots">
+                            <div class="info-item">
+                                <div class="info-icon">👥</div>
+                                <div class="info-content">
+                                    <h4>Capacity</h4>
+                                    <p>Up to 50,000 guests</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">🕐</div>
+                                <div class="info-content">
+                                    <h4>Operating Hours</h4>
+                                    <p>Daily: 8:00 AM - 11:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="features-section">
+                            <h4 class="features-title">Premium Features</h4>
+                            <ul class="features-list">
+                                <li>• Professional sound system</li>
+                                <li>• HD video boards</li>
+                                <li>• VIP hospitality suites</li>
+                                <li>• Full catering services</li>
+                                <li>• Parking for 2,000+ vehicles</li>
+                                <li>• Professional event staff</li>
+                            </ul>
+                        </div>
+
+                        <!-- Decorative Elements -->
+                        <div class="decorative-dots">
                             <span class="dot"></span>
                             <span class="dot"></span>
                             <span class="dot"></span>
@@ -102,16 +174,22 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <div class="toast-content">
-            <p id="toastMessage"></p>
         </div>
+        
+        
+
+        <!-- Success Toast -->
+        <div id="successToast" class="toast">
+            <div class="toast-icon">✓</div>
+            <p>Reservation request submitted successfully! We'll contact you within 24 hours.</p>
+        </div>
+        <footer class="footer">
+
+        </footer>
     </div>
+    
 
     <script src="/assets/js/contact.js"></script>
+    <script src="/assets/js/injict.js"></script>
 </body>
 </html>
