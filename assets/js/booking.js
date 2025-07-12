@@ -1,5 +1,12 @@
+
 // Booking page functionality
-document.addEventListener('DOMContentLoaded', function() {
+let facilitiesData = [];
+let selectedSport = 'all';
+let filteredFacilities = [];
+let selectedFacility = null;
+
+document.addEventListener('DOMContentLoaded', async function () {
+    await fetchFacilitiesFromServer();
     initBookingPage();
     initFilters();
     initBookingModal();
@@ -7,144 +14,28 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
 });
 
-const facilitiesData = [
-    {
-        id: 1,
-        name: "Main Football Stadium",
-        sport: "football",
-        description: "Professional-grade football stadium with natural grass field and seating for 500 spectators.",
-        features: ["Natural grass field", "Floodlights", "Changing rooms", "Spectator seating"],
-        price: 150,
-        image: "https://images.unsplash.com/photo-1459865264687-595d652de67e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 22,
-        availability: "6 AM - 11 PM"
-    },
-    {
-        id: 2,
-        name: "Training Football Field",
-        sport: "football", 
-        description: "Smaller training field perfect for practice sessions and youth games.",
-        features: ["Artificial turf", "Goal posts", "Changing rooms", "Equipment storage"],
-        price: 80,
-        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 16,
-        availability: "24/7"
-    },
-    {
-        id: 3,
-        name: "Indoor Basketball Court A",
-        sport: "basketball",
-        description: "Professional indoor basketball court with wooden flooring and adjustable hoops.",
-        features: ["Professional flooring", "Adjustable hoops", "Scoreboard", "Air conditioning"],
-        price: 100,
-        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 10,
-        availability: "24/7"
-    },
-    {
-        id: 4,
-        name: "Outdoor Basketball Court",
-        sport: "basketball",
-        description: "Outdoor basketball court with streetball atmosphere and city views.",
-        features: ["Outdoor court", "Street lighting", "Multiple hoops", "Bench seating"],
-        price: 60,
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 10,
-        availability: "6 AM - 10 PM"
-    },
-    {
-        id: 5,
-        name: "Tennis Court A",
-        sport: "tennis",
-        description: "Professional clay tennis court with high-quality surface and lighting.",
-        features: ["Clay surface", "Professional nets", "Court lighting", "Equipment rental"],
-        price: 75,
-        image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 4,
-        availability: "6 AM - 10 PM"
-    },
-    {
-        id: 6,
-        name: "Tennis Court B", 
-        sport: "tennis",
-        description: "Hard court tennis facility with modern amenities and viewing area.",
-        features: ["Hard surface", "Viewing area", "Equipment storage", "Water fountain"],
-        price: 70,
-        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 4,
-        availability: "6 AM - 10 PM"
-    },
-    {
-        id: 7,
-        name: "Olympic Swimming Pool",
-        sport: "swimming",
-        description: "Olympic-size swimming pool with heated water and professional timing systems.",
-        features: ["Olympic size", "Heated water", "Timing systems", "Lifeguard service"],
-        price: 50,
-        image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 50,
-        availability: "6 AM - 10 PM"
-    },
-    {
-        id: 8,
-        name: "Training Pool",
-        sport: "swimming",
-        description: "Smaller heated pool perfect for training and swimming lessons.",
-        features: ["25m length", "Heated water", "Lane dividers", "Shallow end"],
-        price: 30,
-        image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 20,
-        availability: "7 AM - 9 PM"
-    },
-    {
-        id: 9,
-        name: "Indoor Volleyball Court",
-        sport: "volleyball",
-        description: "Professional indoor volleyball court with spring-loaded flooring.",
-        features: ["Spring flooring", "Professional nets", "Scoreboard", "Seating area"],
-        price: 80,
-        image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 12,
-        availability: "8 AM - 10 PM"
-    },
-    {
-        id: 10,
-        name: "Beach Volleyball Court",
-        sport: "volleyball",
-        description: "Outdoor beach volleyball court with real sand and ocean breeze simulation.",
-        features: ["Real sand", "Beach nets", "Outdoor lighting", "Shower facilities"],
-        price: 65,
-        image: "https://images.unsplash.com/photo-1594736797933-d0701ba0d2de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 8,
-        availability: "8 AM - 8 PM"
-    },
-    {
-        id: 11,
-        name: "Badminton Court 1",
-        sport: "badminton",
-        description: "Indoor badminton court with proper ventilation and high-quality flooring.",
-        features: ["Indoor court", "Proper ventilation", "Quality flooring", "Equipment available"],
-        price: 60,
-        image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 4,
-        availability: "7 AM - 11 PM"
-    },
-    {
-        id: 12,
-        name: "Badminton Court 2",
-        sport: "badminton", 
-        description: "Second indoor badminton court with the same high standards and amenities.",
-        features: ["Indoor court", "Air conditioning", "Equipment rental", "Score display"],
-        price: 60,
-        image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        capacity: 4,
-        availability: "7 AM - 11 PM"
-    }
-];
+async function fetchFacilitiesFromServer() {
+    try {
+        const res = await fetch('../../backend/getFacilities.php');
+        const data = await res.json();
 
-let selectedSport = 'all';
-let filteredFacilities = [...facilitiesData];
-let selectedFacility = null;
+        if (Array.isArray(data)) {
+            facilitiesData = data.map(f => ({
+                ...f,
+                features: f.features.split(',') // Convert "feature1,feature2" into array
+            }));
+            filteredFacilities = [...facilitiesData];
+        } else {
+            console.error('Invalid facilities data:', data);
+            facilitiesData = [];
+            filteredFacilities = [];
+        }
+    } catch (err) {
+        console.error('Error fetching facilities:', err);
+        facilitiesData = [];
+        filteredFacilities = [];
+    }
+}
 
 function initBookingPage() {
     renderSportCards();
@@ -423,30 +314,35 @@ function formatTime(timeString) {
 
 function handleBookingSubmission() {
     const formData = {
-        facility: selectedFacility.name,
+        facilityId: selectedFacility.id,
         date: document.getElementById('booking-date').value,
         time: document.getElementById('start-time').value,
-        duration: document.getElementById('duration').value,
-        players: document.getElementById('players').value
+        duration: parseInt(document.getElementById('duration').value),
+        players: parseInt(document.getElementById('players').value)
     };
 
-    // Save booking to localStorage
-    const bookings = JSON.parse(localStorage.getItem('sportzone_bookings') || '[]');
-    const bookingId = 'BK' + Date.now();
-    
-    bookings.push({
-        id: bookingId,
-        ...formData,
-        facilityId: selectedFacility.id,
-        status: 'confirmed',
-        createdAt: new Date().toISOString()
+    fetch('../../backend/submitBooking.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert(`Booking confirmed! ID: ${data.bookingId}`);
+            closeBookingModal();
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        alert("Error processing booking.");
+        console.error(error);
     });
-
-    localStorage.setItem('sportzone_bookings', JSON.stringify(bookings));
-
-    alert(`Booking confirmed! Your booking ID is: ${bookingId}`);
-    closeBookingModal();
 }
+
 
 function initDatePicker() {
     // Set minimum date to today
