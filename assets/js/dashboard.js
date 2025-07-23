@@ -1,23 +1,8 @@
-    // // Sports data
-    // const sports = [
-    //     { id: 1, name: 'Tennis', icon: '🎾', courts: 4, available: 2, price: '$25/hour' },
-    //     { id: 2, name: 'Basketball', icon: '🏀', courts: 2, available: 1, price: '$30/hour' },
-    //     { id: 3, name: 'Football', icon: '⚽', courts: 3, available: 3, price: '$50/hour' },
-    //     { id: 4, name: 'Swimming', icon: '🏊', courts: 2, available: 1, price: '$20/hour' },
-    //     { id: 5, name: 'Volleyball', icon: '🏐', courts: 2, available: 2, price: '$35/hour' },
-    //     { id: 6, name: 'Badminton', icon: '🏸', courts: 6, available: 4, price: '$15/hour' },
-    // ];
+let sports = [];
+let recentBookings = [];
 
-    // // Recent bookings data
-    // const recentBookings = [
-    //     { id: 1, sport: 'Tennis', court: 'Court A', date: '2025-06-02', time: '14:00', status: 'Confirmed' },
-    //     { id: 2, sport: 'Basketball', court: 'Court 1', date: '2025-06-03', time: '16:00', status: 'Pending' },
-    //     { id: 3, sport: 'Football', court: 'Field 2', date: '2025-06-05', time: '18:00', status: 'Confirmed' },
-    // ];
-
-
-    function populateStats() {
-    fetch('api/get_stats.php')
+function populateStats() {
+    fetch('http://localhost/project_web3/api/get_stats.php')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -31,9 +16,9 @@
         })
         .catch(error => console.error('Fetch error:', error));
 }
-    
+
 function populateSportsGrid() {
-    fetch('api/get_sports.php')
+    fetch('http://localhost/project_web3/api/get_sports.php')
         .then(response => response.json())
         .then(data => {
             sports = data;
@@ -43,11 +28,8 @@ function populateSportsGrid() {
         .catch(error => console.error('Error fetching sports:', error));
 }
 
-let sports = [];
-let recentBookings = [];
-
 function populateBookingsList() {
-    fetch('api/get_recent_bookings.php')
+    fetch('http://localhost/project_web3/api/get_recent_bookings.php')
         .then(response => response.json())
         .then(data => {
             recentBookings = data;
@@ -57,9 +39,6 @@ function populateBookingsList() {
         .catch(error => console.error('Error fetching bookings:', error));
 }
 
-
-
-// Function to create sport card HTML
 function createSportCard(sport) {
     return `
         <div class="sport-card" onclick="bookSport(${sport.id})">
@@ -79,7 +58,6 @@ function createSportCard(sport) {
     `;
 }
 
-// Function to create booking item HTML
 function createBookingItem(booking) {
     const statusClass = booking.status === 'Confirmed' ? 'status-confirmed' : 'status-pending';
     
@@ -110,52 +88,47 @@ function createBookingItem(booking) {
     `;
 }
 
-// Function to handle sport booking
 function bookSport(sportId) {
     const sport = sports.find(s => s.id === sportId);
     if (sport) {
         alert(`Booking ${sport.name}! Redirecting to booking form...`);
-        // Here you would typically redirect to a booking form or open a modal
+        // window.location.href = `booking.html?sport=${sport.id}`; // optional redirect
     }
 }
 
-// Function to handle search
 function handleSearch() {
     alert('Search functionality would be implemented here');
 }
 
-// Function to handle new booking
 function handleNewBooking() {
     alert('New booking form would open here');
 }
 
-// Initialize the dashboard
 function initDashboard() {
     populateSportsGrid();
     populateBookingsList();
-    
-    // Add event listeners
+    populateStats(); // ✅ Make sure it's called
+
     const searchBtn = document.querySelector('.btn-outline');
     const newBookingBtn = document.querySelector('.btn-primary');
-    
+
     if (searchBtn) {
         searchBtn.addEventListener('click', handleSearch);
     }
-    
+
     if (newBookingBtn) {
         newBookingBtn.addEventListener('click', handleNewBooking);
     }
-    
-    // Add click handlers for quick actions
+
     const actionButtons = document.querySelectorAll('.action-btn');
+    const actions = ['Schedule Booking', 'View Facilities', 'Manage Profile'];
+    
     actionButtons.forEach((btn, index) => {
         btn.addEventListener('click', () => {
-            const actions = ['Schedule Booking', 'View Facilities', 'Manage Profile'];
             alert(`${actions[index]} clicked! This would navigate to the respective page.`);
         });
     });
-    
-    // Add click handler for "View All Bookings"
+
     const viewAllBtn = document.querySelector('.card-content .btn-outline');
     if (viewAllBtn) {
         viewAllBtn.addEventListener('click', () => {
@@ -164,10 +137,9 @@ function initDashboard() {
     }
 }
 
-// Run when DOM is loaded
 document.addEventListener('DOMContentLoaded', initDashboard);
 
-// Animation functions for enhanced UX
+// Animation
 function animateStats() {
     const statCards = document.querySelectorAll('.stat-card');
     statCards.forEach((card, index) => {
@@ -175,7 +147,7 @@ function animateStats() {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'all 0.5s ease';
-            
+
             setTimeout(() => {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
@@ -184,7 +156,6 @@ function animateStats() {
     });
 }
 
-// Call animation after page load
 window.addEventListener('load', () => {
     setTimeout(animateStats, 500);
 });
