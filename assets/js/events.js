@@ -6,130 +6,42 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
 });
 
-// Sample events data
-const eventsData = [
-    {
-        id: 1,
-        title: "Summer Football Championship",
-        sport: "football",
-        type: "tournament",
-        description: "Annual summer football tournament featuring teams from across the region. Professional referees and exciting matches guaranteed.",
-        date: "2024-07-15",
-        time: "09:00",
-        endDate: "2024-07-17",
-        location: "Main Football Stadium",
-        price: 25,
-        maxParticipants: 64,
-        currentParticipants: 48,
-        image: "https://images.unsplash.com/photo-1459865264687-595d652de67e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        organizer: "SportZone Events Team",
-        requirements: ["Age 16+", "Team registration required", "Medical certificate"],
-        prizes: ["1st Place: $1000", "2nd Place: $500", "3rd Place: $250"]
-    },
-    {
-        id: 2,
-        title: "Basketball Skills Workshop",
-        sport: "basketball",
-        type: "workshop",
-        description: "Learn from professional coaches in this intensive basketball skills workshop. Perfect for players of all levels.",
-        date: "2024-06-20",
-        time: "14:00",
-        endDate: "2024-06-20",
-        location: "Indoor Basketball Court A",
-        price: 0,
-        maxParticipants: 20,
-        currentParticipants: 15,
-        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        organizer: "Pro Basketball Academy",
-        requirements: ["Age 12+", "Basic basketball knowledge", "Sports attire required"],
-        prizes: ["Certificate of completion", "Free basketball", "Photo with coaches"]
-    },
-    {
-        id: 3,
-        title: "Tennis Open Tournament",
-        sport: "tennis",
-        type: "tournament",
-        description: "Open tennis tournament for amateur and semi-professional players. Singles and doubles categories available.",
-        date: "2024-06-25",
-        time: "08:00",
-        endDate: "2024-06-27",
-        location: "Tennis Courts A & B",
-        price: 40,
-        maxParticipants: 32,
-        currentParticipants: 28,
-        image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        organizer: "Regional Tennis Association",
-        requirements: ["Age 18+", "ITF ranking or club membership", "Own equipment"],
-        prizes: ["Trophy for winners", "Prize money pool", "Ranking points"]
-    },
-    {
-        id: 4,
-        title: "Swimming Training Camp",
-        sport: "swimming",
-        type: "training",
-        description: "Intensive swimming training camp with Olympic-level coaches. Focus on technique improvement and speed building.",
-        date: "2024-07-01",
-        time: "06:00",
-        endDate: "2024-07-05",
-        location: "Olympic Swimming Pool",
-        price: 150,
-        maxParticipants: 16,
-        currentParticipants: 12,
-        image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        organizer: "Elite Swimming Academy",
-        requirements: ["Age 14+", "Intermediate swimming level", "Medical clearance"],
-        prizes: ["Training certificate", "Technique analysis", "Personalized training plan"]
-    },
-    {
-        id: 5,
-        title: "Volleyball Beach Championship",
-        sport: "volleyball",
-        type: "competition",
-        description: "Beach volleyball championship with teams competing in a sand court environment. Great atmosphere guaranteed!",
-        date: "2024-06-30",
-        time: "10:00",
-        endDate: "2024-06-30",
-        location: "Beach Volleyball Court",
-        price: 30,
-        maxParticipants: 24,
-        currentParticipants: 20,
-        image: "https://images.unsplash.com/photo-1594736797933-d0701ba0d2de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        organizer: "Volleyball Club United",
-        requirements: ["Team of 4 players", "Age 16+", "Beach volleyball experience"],
-        prizes: ["Winner takes all", "Team trophies", "Individual medals"]
-    },
-    {
-        id: 6,
-        title: "Badminton Doubles Tournament",
-        sport: "badminton",
-        type: "tournament",
-        description: "Competitive doubles tournament for badminton enthusiasts. Mixed and same-gender categories available.",
-        date: "2024-07-08",
-        time: "09:00",
-        endDate: "2024-07-08",
-        location: "Badminton Courts 1 & 2",
-        price: 20,
-        maxParticipants: 32,
-        currentParticipants: 24,
-        image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        organizer: "Badminton Sports Club",
-        requirements: ["Doubles pair required", "Age 18+", "Tournament experience preferred"],
-        prizes: ["Cash prizes", "Trophies", "Certificates"]
-    }
-];
-
-let selectedSport = 'all';
-let filteredEvents = [...eventsData];
+let eventsData = [];
+let filteredEvents = [];
 let displayedEvents = [];
+let selectedSport = 'all';
 let eventsPerPage = 6;
 let currentPage = 1;
 
+
 function initEventsPage() {
-    renderSportIcons();
-    applyFilters();
-    loadMoreEvents();
-    updateEventsCount();
+    fetchEventsFromServer().then(() => {
+        renderSportIcons();
+        applyFilters();
+        loadMoreEvents();
+        updateEventsCount();
+    });
 }
+async function fetchEventsFromServer() {
+    try {
+        const response = await fetch('http://localhost/project_web3/api/get_events.php');
+        const data = await response.json();
+console.log("Fetched events:", data);
+
+        eventsData = data.map(event => ({
+            ...event,
+            price: parseFloat(event.price),
+            currentParticipants: parseInt(event.currentParticipants),
+            maxParticipants: parseInt(event.maxParticipants),
+            requirements: Array.isArray(event.requirements) ? event.requirements : [],
+            prizes: Array.isArray(event.prizes) ? event.prizes : []
+        }));
+        filteredEvents = [...eventsData];
+    } catch (error) {
+        console.error("Failed to load events:", error);
+    }
+}
+
 
 function renderSportIcons() {
     const container = document.getElementById('sport-icons');

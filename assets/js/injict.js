@@ -2,10 +2,10 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  injectHTML("/includes/header.html", ".header", "");
+  injectHTML("/project_web3/includes/header.html", ".header", "Header");
 
  
-  injectHTML("/includes/footer.html", ".footer", "");
+  injectHTML("/project_web3/includes/footer.html", ".footer", "Footer");
 });
 
 /**

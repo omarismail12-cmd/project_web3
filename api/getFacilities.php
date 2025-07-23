@@ -1,14 +1,20 @@
 <?php
 header('Content-Type: application/json');
-require_once 'db.php'; // الاتصال بقاعدة البيانات
+require_once '../db.php';
 
-$sql = "SELECT * FROM facilities WHERE country = 'Lebanon'";
+$sql = "SELECT * FROM facilities";  
 $result = $conn->query($sql);
 
 $facilities = [];
 
-if ($result->num_rows > 0) {
+if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        // Ensure image field is properly set
+        if (empty($row['image']) || $row['image'] === 'undefined') {
+            $row['image'] = null;
+        } else {
+            $row['image'] = '/facilities/' . $row['image'];
+        }
         $facilities[] = $row;
     }
 }
