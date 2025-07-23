@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Form validation
+    // Validation helpers
     function validateEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -47,22 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    emailInput.addEventListener('input', function() {
-        if (this.value && validateEmail(this.value)) {
-            clearError('email');
-        }
-    });
-
     passwordInput.addEventListener('blur', function() {
         if (this.value && this.value.length < 6) {
             showError('password', 'Password must be at least 6 characters');
         } else {
-            clearError('password');
-        }
-    });
-
-    passwordInput.addEventListener('input', function() {
-        if (this.value.length >= 6) {
             clearError('password');
         }
     });
@@ -73,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let isValid = true;
         
-        // Validate email
         if (!emailInput.value) {
             showError('email', 'Email is required');
             isValid = false;
@@ -84,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             clearError('email');
         }
         
-        // Validate password
         if (!passwordInput.value) {
             showError('password', 'Password is required');
             isValid = false;
@@ -96,26 +82,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (isValid) {
-            // Show loading state
             signinBtn.disabled = true;
             btnText.style.display = 'none';
             loadingSpinner.style.display = 'block';
-            
-            // Simulate form submission (remove this in production)
+
             setTimeout(() => {
-                // Reset button state
                 signinBtn.disabled = false;
                 btnText.style.display = 'block';
                 loadingSpinner.style.display = 'none';
-                
-                // In production, submit the form
-                // form.submit();
-                alert('Sign in successful! (This is a demo)');
-            }, 2000);
+
+                let role = 'client';
+                if (emailInput.value.trim().toLowerCase() === 'admin@sportbook.com') {
+                    role = 'admin';
+                }
+
+                localStorage.setItem('userRole', role);
+                localStorage.setItem('userEmail', emailInput.value);
+
+                alert(`Sign in successful! You are logged in as ${role}.`);
+                if (role === 'admin') {
+                    // Redirect to admin dashboard
+                    window.location.href = 'dashboard.html';
+                }
+                else{
+                    window.location.href ='home.html'
+                }
+            }, 1000);
         }
     });
 
-    // Social auth buttons
+    // Social auth demo
     document.querySelector('.btn-social.google').addEventListener('click', function() {
         alert('Google sign-in would be implemented here');
     });
@@ -124,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Facebook sign-in would be implemented here');
     });
 
-    // Add smooth animations to form elements
+    // Animation
     const formElements = form.querySelectorAll('input, button');
     formElements.forEach((element, index) => {
         element.style.animationDelay = `${index * 0.1}s`;
@@ -132,20 +128,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add CSS for slide-in animation
+// CSS for slide-in
 const style = document.createElement('style');
 style.textContent = `
-    .slide-in {
-        animation: slideInElement 0.6s ease-out forwards;
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    
-    @keyframes slideInElement {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+.slide-in {
+    animation: slideInElement 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+@keyframes slideInElement {
+    to { opacity: 1; transform: translateY(0); }
+}
 `;
 document.head.appendChild(style);

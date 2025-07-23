@@ -158,7 +158,7 @@ function initializeFacilities() {
                 <div class="facility-content">
                     <h3>${facility.name}</h3>
                     <p>${facility.description}</p>
-                    <a href="#" class="facility-link">Book Now →</a>
+                    <a href="/pages/booking.html" class="facility-link">Book Now →</a>
                 </div>
             </div>
         `).join('');

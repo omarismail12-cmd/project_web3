@@ -1,160 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="/assets/css/home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <script>
+      (function () {
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+      })();
+    </script>
+  </head>
+  <body>
     <!-- Header -->
-  <header class="header">
-    
-  </header>
+    <header class="header"></header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-background"></div>
-        <div class="hero-overlay"></div>
-        
-        <!-- Animated shapes -->
-        <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
+      <div class="hero-background"></div>
+      <div class="hero-overlay"></div>
+
+      <!-- Animated shapes -->
+      <div class="hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+
+      <div class="hero-content">
+        <h1 class="hero-title">Reserve Your Dream Stadium</h1>
+        <p class="hero-description">
+          Experience world-class sports facilities with our seamless booking
+          platform. From professional stadiums to premium courts - book your
+          perfect venue today.
+        </p>
+        <div class="hero-buttons">
+          <a href="/pages/booking.html" class="btn-primary">
+            📅 Start Booking
+          </a>
+          <button class="btn-secondary">View Facilities →</button>
         </div>
-        
-        <div class="hero-content">
-            <h1 class="hero-title">Reserve Your Dream Stadium</h1>
-            <p class="hero-description">
-                Experience world-class sports facilities with our seamless booking platform. 
-                From professional stadiums to premium courts - book your perfect venue today.
-            </p>
-            <div class="hero-buttons">
-                <a href="/pages/booking.html" class="btn-primary">
-                    📅 Start Booking
-                </a>
-                <button class="btn-secondary">
-                    View Facilities →
-                </button>
-            </div>
-        </div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose StadiumBook</h2>
-                <div class="section-divider"></div>
-                <p>The ultimate platform for sports facility reservations with premium features</p>
-            </div>
-            
-            <div class="features-grid" id="featuresGrid">
-                <!-- Features will be populated by JavaScript -->
-            </div>
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose StadiumBook</h2>
+          <div class="section-divider"></div>
+          <p>
+            The ultimate platform for sports facility reservations with premium
+            features
+          </p>
         </div>
+
+        <div class="features-grid" id="featuresGrid">
+          <!-- Features will be populated by JavaScript -->
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section class="about-section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=400&fit=crop" alt="Sports Stadium" class="sports-img">
-                    <div class="image-badge">
-                        ⭐
-                    </div>
-                </div>
-                
-                <div class="about-content">
-                    <h2>Premium Sports Facilities</h2>
-                    <p>
-                        Discover exceptional sports infrastructure designed for champions. Our state-of-the-art 
-                        facilities feature cutting-edge technology, professional-grade surfaces, and world-class amenities 
-                        that elevate every sporting experience.
-                    </p>
-                    <p>
-                        From Olympic-standard pools to FIFA-approved pitches, every venue in our network 
-                        meets the highest international standards. Whether you're training for competition 
-                        or enjoying recreational sports, we provide the perfect environment for excellence.
-                    </p>
-                    <button class="btn-dark">
-                        Explore Facilities →
-                    </button>
-                </div>
-            </div>
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=400&fit=crop"
+              alt="Sports Stadium"
+              class="sports-img"
+            />
+            <div class="image-badge">⭐</div>
+          </div>
+
+          <div class="about-content">
+            <h2>Premium Sports Facilities</h2>
+            <p>
+              Discover exceptional sports infrastructure designed for champions.
+              Our state-of-the-art facilities feature cutting-edge technology,
+              professional-grade surfaces, and world-class amenities that
+              elevate every sporting experience.
+            </p>
+            <p>
+              From Olympic-standard pools to FIFA-approved pitches, every venue
+              in our network meets the highest international standards. Whether
+              you're training for competition or enjoying recreational sports,
+              we provide the perfect environment for excellence.
+            </p>
+            <button class="btn-dark">Explore Facilities →</button>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Facilities Section -->
     <section class="facilities-section" id="facilities">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Premium Facilities</h2>
-                <div class="section-divider"></div>
-                <p>World-class venues for every sport and occasion</p>
-            </div>
-            
-            <div class="facilities-grid" id="facilitiesGrid">
-                <!-- Facilities will be populated by JavaScript -->
-            </div>
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Premium Facilities</h2>
+          <div class="section-divider"></div>
+          <p>World-class venues for every sport and occasion</p>
         </div>
+
+        <div class="facilities-grid" id="facilitiesGrid">
+          <!-- Facilities will be populated by JavaScript -->
+        </div>
+      </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div class="cta-background">
-            <div class="cta-shape cta-shape-1"></div>
-            <div class="cta-shape cta-shape-2"></div>
-            <div class="cta-shape cta-shape-3"></div>
-        </div>
-        <div class="cta-content">
-            <h2>Ready to Reserve Your Venue?</h2>
-            <p>Join thousands of satisfied customers who choose StadiumBook for their sporting events. 
-               Experience the difference of premium facilities and seamless booking.</p>
-            <button class="cta-btn-large">Start Booking Today</button>
-        </div>
+      <div class="cta-background">
+        <div class="cta-shape cta-shape-1"></div>
+        <div class="cta-shape cta-shape-2"></div>
+        <div class="cta-shape cta-shape-3"></div>
+      </div>
+      <div class="cta-content">
+        <h2>Ready to Reserve Your Venue?</h2>
+        <p>
+          Join thousands of satisfied customers who choose StadiumBook for their
+          sporting events. Experience the difference of premium facilities and
+          seamless booking.
+        </p>
+        <a href="/pages/booking.html" class="cta-btn-large"
+          >Start Booking Today</a
+        >
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get in Touch</h2>
-                <p>Ready to reserve your perfect venue? Contact us today and let us help you create 
-                   an unforgettable sporting experience.</p>
-            </div>
-            
-            <div class="contact-content">
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-row">
-                        <input type="tel" placeholder="Phone Number" required>
-                        <input type="text" placeholder="Preferred Sport" required>
-                    </div>
-                    <textarea placeholder="Tell us about your requirements..." required></textarea>
-                    <button type="submit" class="submit-btn">Send Reservation Request</button>
-                </form>
-                
-                <div class="contact-info" id="contactInfo">
-                    <!-- Contact info will be populated by JavaScript -->
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+          <p>
+            Ready to reserve your perfect venue? Contact us today and let us
+            help you create an unforgettable sporting experience.
+          </p>
         </div>
+
+        <div class="contact-content">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <input
+                type="text"
+                name="from_name"
+                placeholder="Your Name"
+                required
+              />
+              <input
+                type="email"
+                name="from_email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                required
+              />
+              <input
+                type="text"
+                name="sport"
+                placeholder="Preferred Sport"
+                required
+              />
+            </div>
+            <textarea
+              name="message"
+              placeholder="Tell us about your requirements..."
+              required
+            ></textarea>
+            <button type="submit" class="submit-btn">
+              Send Reservation Request
+            </button>
+          </form>
+
+          <div class="contact-info" id="contactInfo">
+            <!-- Contact info will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
     </section>
 
-   <footer class="footer">
-
-   </footer>
+    <footer class="footer"></footer>
 
     <script src="/assets/js/home.js"></script>
     <script src="/assets/js/injict.js"></script>
-</body>
+  </body>
 </html>

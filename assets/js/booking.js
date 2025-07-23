@@ -200,25 +200,31 @@ function updateFacilitiesCount() {
 
 function initBookingModal() {
     const modal = document.getElementById('booking-modal');
+    if (!modal) return;
+
     const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeBookingModal);
+    }
     
-    closeBtn.addEventListener('click', closeBookingModal);
     modal.addEventListener('click', function(e) {
         if (e.target === modal) closeBookingModal();
     });
 
     // Form submission
     const form = document.getElementById('booking-form');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        handleBookingSubmission();
-    });
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleBookingSubmission();
+        });
 
-    // Update summary when form changes
-    const formInputs = form.querySelectorAll('input, select');
-    formInputs.forEach(input => {
-        input.addEventListener('change', updateBookingSummary);
-    });
+        // Update summary when form changes
+        const formInputs = form.querySelectorAll('input, select');
+        formInputs.forEach(input => {
+            input.addEventListener('change', updateBookingSummary);
+        });
+    }
 }
 
 function openBookingModal(facilityId) {

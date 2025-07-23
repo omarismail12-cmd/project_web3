@@ -16,6 +16,10 @@
   --transition: all 0.3s ease;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Base Styles */
 * {
   margin: 0;
@@ -468,6 +472,10 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.cta-content a{
+  text-decoration: none;
 }
 
 .cta-content h2 {
