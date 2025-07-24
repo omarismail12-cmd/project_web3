@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
         clearAllErrors();
         
         const isValid = validateForm();
+        // Validate role select
+        const roleInput = document.getElementById('role');
+        if (!roleInput.value) {
+            showError('role', 'Please select an account type');
+            return;
+        } else {
+            clearError('role');
+        }
         if (isValid) {
             // Show loading state
             signupBtn.disabled = true;
@@ -114,10 +122,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showError(inputId, message) {
-        const errorEl = document.getElementById(inputId + '-error');
-        if (errorEl) {
-            errorEl.textContent = message;
-            errorEl.style.opacity = '1';
+        const errorElement = document.getElementById(inputId + '-error');
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+    }
+
+    function clearError(inputId) {
+        const errorElement = document.getElementById(inputId + '-error');
+        if (errorElement) {
+            errorElement.textContent = '';
         }
     }
 

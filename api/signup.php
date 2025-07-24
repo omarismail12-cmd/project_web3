@@ -41,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hash password
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
-    // Insert new user, role default 'user'
+    // Insert new user, role from form (user or owner)
     $fullName = $firstName . ' ' . $lastName;
+    $role = (isset($_POST['role']) && $_POST['role'] === 'owner') ? 'owner' : 'user';
     $stmt = $conn->prepare('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)');
-    $role = 'user';
     $stmt->bind_param('ssss', $fullName, $email, $passwordHash, $role);
 
     if ($stmt->execute()) {
@@ -53,7 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_email'] = $email;
         $_SESSION['user_role'] = $role;
 
-        header('Location: ../pages/home.html');
+        if ($role === 'owner') {
+            header('Location: ../pages/dashboard.html');
+        } else {
+            header('Location: ../pages/home.html');
+        }
         exit;
     } else {
         header('Location: ../pages/signup.html?error=server_error');
