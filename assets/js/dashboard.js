@@ -6,13 +6,18 @@ function populateStats() {
         .then(response => response.json())
         .then(data => {
             if (data.error) {
-                console.error('Error:', data.error);
+                console.error('Stats Error:', data.error);
+                // Set default values when access denied
+                document.querySelector('.stat-card:nth-child(1) .stat-value').textContent = '0';
+                document.querySelector('.stat-card:nth-child(2) .stat-value').textContent = '0';
+                document.querySelector('.stat-card:nth-child(3) .stat-value').textContent = '$0.00';
+                document.querySelector('.stat-card:nth-child(4) .stat-value').textContent = '0';
                 return;
             }
-            document.querySelector('.stat-card:nth-child(1) .stat-value').textContent = data.totalBookings;
-            document.querySelector('.stat-card:nth-child(2) .stat-value').textContent = data.activeCourts;
-            document.querySelector('.stat-card:nth-child(3) .stat-value').textContent = `$${data.revenue}`;
-            document.querySelector('.stat-card:nth-child(4) .stat-value').textContent = data.members;
+            document.querySelector('.stat-card:nth-child(1) .stat-value').textContent = data.totalBookings || '0';
+            document.querySelector('.stat-card:nth-child(2) .stat-value').textContent = data.activeCourts || '0';
+            document.querySelector('.stat-card:nth-child(3) .stat-value').textContent = `$${data.revenue || '0.00'}`;
+            document.querySelector('.stat-card:nth-child(4) .stat-value').textContent = data.members || '0';
         })
         .catch(error => console.error('Fetch error:', error));
 }
@@ -21,20 +26,48 @@ function populateSportsGrid() {
     fetch('http://localhost/project_web3/api/get_sports.php')
         .then(response => response.json())
         .then(data => {
-            sports = data;
-            const sportsGrid = document.getElementById('sportsGrid');
-            sportsGrid.innerHTML = sports.map(createSportCard).join('');
+            if (data.error) {
+                console.error('Sports Error:', data.error);
+                const sportsGrid = document.getElementById('sportsGrid');
+                sportsGrid.innerHTML = '<p>Unable to load sports. Please log in as facility owner.</p>';
+                return;
+            }
+            if (Array.isArray(data)) {
+                sports = data;
+                const sportsGrid = document.getElementById('sportsGrid');
+                sportsGrid.innerHTML = sports.map(createSportCard).join('');
+            } else {
+                console.error('Sports data is not an array:', data);
+                const sportsGrid = document.getElementById('sportsGrid');
+                sportsGrid.innerHTML = '<p>No sports data available.</p>';
+            }
         })
         .catch(error => console.error('Error fetching sports:', error));
 }
 
 function populateBookingsList() {
-    fetch('http://localhost/project_web3/api/get_recent_bookings.php')
+    fetch('http://localhost/project_web3/api/get_recent_booking.php')
         .then(response => response.json())
         .then(data => {
-            recentBookings = data;
-            const bookingsList = document.getElementById('bookingsList');
-            bookingsList.innerHTML = recentBookings.map(createBookingItem).join('');
+            if (data.error) {
+                console.error('Bookings Error:', data.error);
+                const bookingsList = document.getElementById('bookingsList');
+                bookingsList.innerHTML = '<p>Unable to load bookings. Please log in as facility owner.</p>';
+                return;
+            }
+            if (Array.isArray(data)) {
+                recentBookings = data;
+                const bookingsList = document.getElementById('bookingsList');
+                if (recentBookings.length === 0) {
+                    bookingsList.innerHTML = '<p>No recent bookings found.</p>';
+                } else {
+                    bookingsList.innerHTML = recentBookings.map(createBookingItem).join('');
+                }
+            } else {
+                console.error('Bookings data is not an array:', data);
+                const bookingsList = document.getElementById('bookingsList');
+                bookingsList.innerHTML = '<p>No bookings data available.</p>';
+            }
         })
         .catch(error => console.error('Error fetching bookings:', error));
 }
