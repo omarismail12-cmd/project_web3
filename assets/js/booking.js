@@ -208,7 +208,8 @@ function renderFacilities() {
         }
 
         return `
-        <div class="facility-card" onclick="openBookingModal(${facility.id})">
+<div class="facility-card">
+
             <div class="facility-image">
                 <img src="${imagePath}" 
                      alt="${facility.name}" 
@@ -227,7 +228,10 @@ function renderFacilities() {
                 </div>
                 <div class="facility-footer">
                     <div class="facility-price"><span class="price">$${facility.price}</span>/hour</div>
-                    <button class="btn btn-primary btn-small"><i class="fas fa-calendar-plus"></i> Book Now</button>
+ <button class="btn btn-primary btn-small" onclick="openBookingModal(${facility.id})">
+  <i class="fas fa-calendar-plus"></i> book now
+</button>
+
                 </div>
             </div>
         </div>
@@ -244,6 +248,7 @@ function updateFacilitiesCount() {
 
 function initBookingModal() {
     const modal = document.getElementById('booking-modal');
+;
     const closeBtn = modal.querySelector('.modal-close');
     
     closeBtn.addEventListener('click', closeBookingModal);
@@ -265,23 +270,24 @@ function initBookingModal() {
 }
 
 function openBookingModal(facilityId) {
-    selectedFacility = facilitiesData.find(f => f.id === facilityId);
-    if (!selectedFacility) return;
+  const modal = document.getElementById('booking-modal');
+  const form = document.getElementById('booking-form');
+  const title = document.getElementById('modal-title');
 
-    document.getElementById('modal-title').textContent = `Book ${selectedFacility.name}`;
-    document.getElementById('booking-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+  selectedFacility = filteredFacilities.find(f => f.id === facilityId);
+  if (!selectedFacility || !modal || !form || !title) return;
 
-    updateBookingSummary();
-    generateTimeSlots();
+  modal.classList.add('active');
+  title.textContent = `Book: ${selectedFacility.name}`;
+
+  // Reset the form
+  form.reset();
 }
 
 function closeBookingModal() {
-    document.getElementById('booking-modal').classList.remove('active');
-    document.body.style.overflow = '';
-    document.getElementById('booking-form').reset();
-    selectedFacility = null;
+  document.getElementById('booking-modal').classList.remove('active');
 }
+
 
 function generateTimeSlots() {
     const dateInput = document.getElementById('booking-date');
@@ -390,5 +396,8 @@ function initMobileMenu() {
         });
     }
 }
+window.addEventListener('DOMContentLoaded', () => {
+  initBookingModal();
+});
 
 console.log('Booking page loaded successfully');

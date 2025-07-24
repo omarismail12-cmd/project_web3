@@ -170,7 +170,27 @@
 
     <!-- Footer will be injected here -->
     <footer class="footer"></footer>
+    <div id="booking-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+    <h2 id="modal-title">Book Facility</h2>
+    <form id="booking-form">
+      <label for="user-name">Your Name</label>
+      <input type="text" id="user-name" name="user-name" required>
+
+      <label for="booking-date">Date</label>
+      <input type="date" id="booking-date" name="booking-date" required>
+
+      <label for="booking-time">Time</label>
+      <input type="time" id="booking-time" name="booking-time" required>
+
+      <button type="submit" class="btn">Submit Booking</button>
+    </form>
+  </div>
+</div>
+
     <script src="../assets/js/booking.js"></script>
     <script src="../assets/js/injict.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'mala3b';
+$db = 'project_web3'; // تأكد من اسم قاعدة البيانات
 $user = 'root';
 $pass = ''; // إذا لم تضع كلمة مرور في MySQL
 

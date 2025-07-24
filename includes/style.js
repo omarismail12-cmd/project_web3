@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+     console.log("DOM fully loaded");
     setupMobileMenu();
     updateFooterYear();
     enableSmoothScroll();
@@ -10,29 +11,41 @@ function setupMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
 
-    if (!mobileMenuBtn || !mobileNav) return;
+    if (!mobileMenuBtn || !mobileNav) {
+        console.warn('🚫');
+        return;
+    }
 
-    mobileMenuBtn.addEventListener('click', () => {
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
         mobileMenuBtn.classList.toggle('active');
-        mobileNav.classList.toggle('active');
+        mobileNav.classList.toggle('open');
     });
 
-    // Close menu on link click
+
     mobileNav.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            mobileNav.classList.remove('active');
+        link.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setTimeout(() => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }, 100); // سرعة الإغلاق بعد الضغط
         });
     });
 
-    // Close menu on outside click
+
     document.addEventListener('click', (event) => {
-        if (!mobileMenuBtn.contains(event.target) && !mobileNav.contains(event.target)) {
+        if (
+            !mobileMenuBtn.contains(event.target) &&
+            !mobileNav.contains(event.target)
+        ) {
             mobileMenuBtn.classList.remove('active');
             mobileNav.classList.remove('active');
         }
     });
 }
+
 
 // === Footer Year ===
 function updateFooterYear() {
