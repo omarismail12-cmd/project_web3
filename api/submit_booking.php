@@ -1,8 +1,14 @@
 <?php
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
 
 $host = 'localhost';
 $db = 'mala3b';
-$user = 'root@localhost';
+$user = 'root';
 $pass = '';
 
 $conn = new mysqli($host, $user, $pass, $db);
@@ -17,6 +23,19 @@ $booking_date = $_POST['booking_date'];
 $start_time = $_POST['start_time'];
 $duration = (int)$_POST['duration']; 
 $players = $_POST['players'];
+
+// Server-side validation
+if ($players > 26) {
+    echo json_encode(['status' => 'error', 'message' => 'Number of players cannot exceed 26.']);
+    $conn->close();
+    exit;
+}
+$today = date('Y-m-d');
+if ($booking_date < $today) {
+    echo json_encode(['status' => 'error', 'message' => 'Booking date cannot be in the past.']);
+    $conn->close();
+    exit;
+}
 
 $start = new DateTime($start_time);
 $end = clone $start;
@@ -44,11 +63,13 @@ if ($result->num_rows > 0) {
 }
 
 $booking_id = 'BK' . time();
+$status = 'pending';
+$created_at = date('Y-m-d H:i:s');
 
 $insert = $conn->prepare("INSERT INTO bookings 
-    (id, facility_id, user_id, booking_date, start_time, duration, players) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)");
-$insert->bind_param("siissii", $booking_id, $facility_id, $user_id, $booking_date, $start_time, $duration, $players);
+    (id, facility_id, user_id, booking_date, start_time, duration, players, status, created_at) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$insert->bind_param("siissiiss", $booking_id, $facility_id, $user_id, $booking_date, $start_time, $duration, $players, $status, $created_at);
 
 if ($insert->execute()) {
     echo json_encode(['status' => 'success', 'booking_id' => $booking_id]);

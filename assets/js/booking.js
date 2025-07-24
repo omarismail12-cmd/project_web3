@@ -69,6 +69,19 @@ function initBookingPage() {
     renderSportCards();
     renderFacilities();
     updateFacilitiesCount();
+    
+    // Add event listeners to Book Now buttons
+    setTimeout(() => {
+        document.querySelectorAll('.book-now-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const facilityId = parseInt(btn.getAttribute('data-facility-id'));
+                console.log('Book Now clicked for facility:', facilityId);
+                window.location.href = `booking-form.html?facility=${facilityId}`;
+            });
+        });
+    }, 100);
 }
 
 function renderSportCards() {
@@ -162,6 +175,19 @@ function applyFilters() {
 
     renderFacilities();
     updateFacilitiesCount();
+    
+    // Re-add event listeners to Book Now buttons after filtering
+    setTimeout(() => {
+        document.querySelectorAll('.book-now-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const facilityId = parseInt(btn.getAttribute('data-facility-id'));
+                console.log('Book Now clicked for facility:', facilityId);
+                window.location.href = `booking-form.html?facility=${facilityId}`;
+            });
+        });
+    }, 100);
 }
 
 function renderFacilities() {
@@ -185,12 +211,17 @@ function renderFacilities() {
         
         // Handle image path more robustly
         let imagePath = defaultImage;
-        
-        if (facility.image && 
-            facility.image !== 'undefined' && 
-            facility.image !== 'null' && 
+        if (facility.image &&
+            facility.image !== 'undefined' &&
+            facility.image !== 'null' &&
             facility.image.trim() !== '') {
-            imagePath = `http://localhost/project_web3/images/${facility.image}`;
+            // If the image is a full URL, use it directly
+            if (facility.image.startsWith('http://') || facility.image.startsWith('https://')) {
+                imagePath = facility.image;
+            } else {
+                // Otherwise, treat as local image
+                imagePath = `http://localhost/project_web3/images/${facility.image}`;
+            }
         }
 
         // Handle features array
@@ -208,7 +239,7 @@ function renderFacilities() {
         }
 
         return `
-        <div class="facility-card" onclick="openBookingModal(${facility.id})">
+        <div class="facility-card" data-facility-id="${facility.id}">
             <div class="facility-image">
                 <img src="${imagePath}" 
                      alt="${facility.name}" 
@@ -227,7 +258,9 @@ function renderFacilities() {
                 </div>
                 <div class="facility-footer">
                     <div class="facility-price"><span class="price">$${facility.price}</span>/hour</div>
-                    <button class="btn btn-primary btn-small"><i class="fas fa-calendar-plus"></i> Book Now</button>
+                    <button class="btn btn-primary btn-small book-now-btn" data-facility-id="${facility.id}">
+                        <i class="fas fa-calendar-plus"></i> Book Now
+                    </button>
                 </div>
             </div>
         </div>

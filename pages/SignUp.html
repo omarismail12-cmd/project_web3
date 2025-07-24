@@ -11,7 +11,7 @@
   <div class="auth-container">
     <div class="auth-card">
       <div class="auth-header">
-        <a href="index.html" class="logo">mala3b</a>
+        <a class="logo">mala3b</a>
         <h1>Create your account</h1>
         <p>Join Mala3b to start booking courts</p>
       </div>
@@ -28,6 +28,15 @@
             <input type="text" id="last-name" name="last_name" required>
             <span class="error-message" id="last-name-error"></span>
           </div>
+        </div>
+
+        <div class="form-group">
+          <label for="role">Account Type</label>
+          <select id="role" name="role" required>
+            <option value="owner">Facility Owner</option>
+            <option value="admin">Administrator</option>
+          </select>
+          <span class="error-message" id="role-error"></span>
         </div>
 
         <div class="form-group">

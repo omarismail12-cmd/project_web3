@@ -101,17 +101,44 @@ document.addEventListener('DOMContentLoaded', function() {
             btnText.style.display = 'none';
             loadingSpinner.style.display = 'block';
             
-            // Simulate form submission (remove this in production)
-            setTimeout(() => {
+            // Prepare form data
+            const formData = {
+                email: emailInput.value.trim(),
+                password: passwordInput.value
+            };
+            
+            // Submit to API
+            fetch('../api/signin.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
                 // Reset button state
                 signinBtn.disabled = false;
                 btnText.style.display = 'block';
                 loadingSpinner.style.display = 'none';
                 
-                // In production, submit the form
-                // form.submit();
-                alert('Sign in successful! (This is a demo)');
-            }, 2000);
+                if (data.success) {
+                    alert('Sign in successful!');
+                    // Redirect based on role
+                    window.location.href = data.redirect;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                // Reset button state
+                signinBtn.disabled = false;
+                btnText.style.display = 'block';
+                loadingSpinner.style.display = 'none';
+                
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
         }
     });
 

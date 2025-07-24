@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function setupMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
+    const showPagesBtn = document.getElementById('showPagesBtn');
 
     if (!mobileMenuBtn || !mobileNav) return;
 
@@ -16,6 +17,28 @@ function setupMobileMenu() {
         mobileMenuBtn.classList.toggle('active');
         mobileNav.classList.toggle('active');
     });
+
+    // Show All Pages button functionality
+    if (showPagesBtn) {
+        showPagesBtn.addEventListener('click', () => {
+            const navSections = mobileNav.querySelectorAll('.mobile-nav-section');
+            const chevronIcon = showPagesBtn.querySelector('.fa-chevron-down');
+            
+            navSections.forEach(section => {
+                section.classList.toggle('expanded');
+            });
+            
+            // Rotate chevron icon
+            chevronIcon.style.transform = chevronIcon.style.transform === 'rotate(180deg)' 
+                ? 'rotate(0deg)' 
+                : 'rotate(180deg)';
+            
+            // Update button text
+            const buttonText = showPagesBtn.querySelector('span');
+            const isExpanded = navSections[0]?.classList.contains('expanded');
+            buttonText.textContent = isExpanded ? 'Hide Pages' : 'Show All Pages';
+        });
+    }
 
     // Close menu on link click
     mobileNav.querySelectorAll('.nav-link').forEach(link => {

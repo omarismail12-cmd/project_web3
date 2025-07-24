@@ -26,11 +26,11 @@ $q2->bind_result($activeCourts);
 $q2->fetch();
 $q2->close();
 
-// إجمالي الإيرادات (نفترض أن الإيراد = السعر × عدد الساعات)
+// إجمالي الإيرادات (نفترض أن الإيراد = السعر لكل حجز)
 $q3 = $conn->prepare("
-    SELECT SUM(f.price * b.duration) FROM bookings b
+    SELECT SUM(f.price) FROM bookings b
     INNER JOIN facilities f ON b.facility_id = f.id
-    WHERE f.owner_id = ? AND b.status = 'confirmed'
+    WHERE f.owner_id = ? AND b.status = 'pending'
 ");
 $q3->bind_param("i", $owner_id);
 $q3->execute();

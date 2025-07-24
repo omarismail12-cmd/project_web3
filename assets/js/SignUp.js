@@ -227,17 +227,50 @@ document.addEventListener('DOMContentLoaded', function() {
             btnText.style.display = 'none';
             loadingSpinner.style.display = 'block';
             
-            // Simulate form submission (remove this in production)
-            setTimeout(() => {
+            // Get role selection (add role selector to HTML if not present)
+            const roleSelector = document.getElementById('role') || document.querySelector('input[name="role"]:checked');
+            const selectedRole = roleSelector ? roleSelector.value : 'owner';
+            
+            // Prepare form data
+            const formData = {
+                name: firstNameInput.value.trim() + ' ' + lastNameInput.value.trim(),
+                email: emailInput.value.trim(),
+                password: passwordInput.value,
+                role: selectedRole
+            };
+            
+            // Submit to API
+            fetch('../api/signup.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
                 // Reset button state
                 signupBtn.disabled = false;
                 btnText.style.display = 'block';
                 loadingSpinner.style.display = 'none';
                 
-                // In production, submit the form
-                // form.submit();
-                alert('Account created successfully! (This is a demo)');
-            }, 2000);
+                if (data.success) {
+                    alert('Account created successfully!');
+                    // Redirect based on role
+                    window.location.href = data.redirect;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                // Reset button state
+                signupBtn.disabled = false;
+                btnText.style.display = 'block';
+                loadingSpinner.style.display = 'none';
+                
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
         }
     });
 
