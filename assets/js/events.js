@@ -215,7 +215,7 @@ function createEventCard(event) {
     }
 
     return `
-        <div class="event-card" onclick="openEventModal(${event.id})">
+        <div class="event-card">
             <div class="event-image">
                 <img src="${event.image}" alt="${event.title}">
                 <div class="event-badge">${event.type}</div>
@@ -242,7 +242,7 @@ function createEventCard(event) {
                 
                 <div class="event-footer">
                     <div class="event-status ${statusClass}">${statusText}</div>
-                    <button class="btn btn-primary btn-small">
+                    <button class="btn btn-primary btn-small" onclick="viewEventDetails(${event.id})">
                         <i class="fas fa-info-circle"></i>
                         View Details
                     </button>
@@ -442,6 +442,11 @@ function initMobileMenu() {
             navMenu.classList.toggle('active');
         });
     }
+}
+
+// Function to navigate to event details page
+function viewEventDetails(eventId) {
+    window.location.href = `event-details.html?id=${eventId}`;
 }
 
 console.log('Events page loaded successfully');

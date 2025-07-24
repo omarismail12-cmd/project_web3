@@ -59,11 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Form submission: let the form submit normally to backend
-  form.addEventListener('submit', function(e) {
-    // Validate first to prevent unnecessary requests
-    let isValid = true;
+  // Form submission: use AJAX instead of normal form submission
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevent default form submission
 
+    // --- Validation ---
+    let isValid = true;
     if (!emailInput.value) {
       showError('email', 'Email is required');
       isValid = false;
@@ -77,20 +78,57 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!passwordInput.value) {
       showError('password', 'Password is required');
       isValid = false;
-    } else if (passwordInput.value.length < 6) {
-      showError('password', 'Password must be at least 6 characters');
-      isValid = false;
     } else {
       clearError('password');
     }
 
-    if (!isValid) {
-      e.preventDefault(); // stop submission if invalid
-    } else {
-      // Show loading spinner on submit button (optional)
-      signinBtn.disabled = true;
-      btnText.style.display = 'none';
-      loadingSpinner.style.display = 'block';
+    if (!isValid) return;
+
+    // --- Show loading state ---
+    signinBtn.disabled = true;
+    btnText.style.display = 'none';
+    loadingSpinner.style.display = 'block';
+
+    // --- AJAX Submission ---
+    try {
+      const formData = new FormData(form);
+      const response = await fetch('../api/signin.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.text();
+      
+      // Check if response contains success indicators
+      if (result.includes('dashboard.html') || result.includes('home.html')) {
+        // Success - extract user info and set localStorage
+        // For now, we'll set a basic user_id to indicate logged in
+        localStorage.setItem('user_id', '1'); // Temporary - should get actual user ID
+        
+        // Redirect based on response
+        if (result.includes('dashboard.html')) {
+          window.location.href = '../pages/dashboard.html';
+        } else {
+          window.location.href = '../pages/home.html';
+        }
+      } else {
+        // Error - show error message
+        if (result.includes('invalid_credentials')) {
+          showError('password', 'Invalid email or password.');
+        } else if (result.includes('missing_fields')) {
+          showError('email', 'Please fill in all required fields.');
+        } else {
+          alert('An error occurred. Please try again.');
+        }
+      }
+    } catch (error) {
+      console.error('Sign-in error:', error);
+      alert('Network error. Please try again.');
+    } finally {
+      // Reset button
+      signinBtn.disabled = false;
+      btnText.style.display = 'block';
+      loadingSpinner.style.display = 'none';
     }
   });
 

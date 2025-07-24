@@ -190,6 +190,13 @@
   </div>
 </div>
 
+    <script src="../assets/js/auth.js"></script>
+    <script>
+      if (!isLoggedIn()) {
+        alert('You must sign in to access the booking page.');
+        window.location.href = '../pages/SignIn.html';
+      }
+    </script>
     <script src="../assets/js/booking.js"></script>
     <script src="../assets/js/injict.js"></script>
 

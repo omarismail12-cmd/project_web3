@@ -98,6 +98,46 @@
 
                 <!-- Sidebar -->
                 <div class="sidebar">
+                    <!-- Facility Management -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Add New Facility</h2>
+                        </div>
+                        <div class="card-content">
+                            <form id="addFacilityForm" enctype="multipart/form-data">
+                                <input type="text" name="name" placeholder="Facility Name" required class="input full-width">
+                                <input type="text" name="sport" placeholder="Sport Type" required class="input full-width">
+                                <textarea name="description" placeholder="Description" class="input full-width"></textarea>
+                                <input type="text" name="features" placeholder="Features (comma separated)" class="input full-width">
+                                <input type="number" name="price" step="0.01" placeholder="Price" required class="input full-width">
+                                <input type="number" name="capacity" placeholder="Capacity" required class="input full-width">
+                                <select name="availability" required class="input full-width">
+                                    <option value="">Select Availability</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <input type="file" name="image" accept="image/*" class="input full-width">
+                                <button type="submit" class="btn btn-primary full-width">Add Facility</button>
+                                <div id="addFacilityMsg"></div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Delete Facility</h2>
+                        </div>
+                        <div class="card-content">
+                            <form id="deleteFacilityForm">
+                                <select name="facility_id" id="facilityDropdown" required class="input full-width">
+                                    <option value="">Select Facility</option>
+                                    <!-- Options populated by JS -->
+                                </select>
+                                <button type="submit" class="btn btn-danger full-width">Delete Facility</button>
+                                <div id="deleteFacilityMsg"></div>
+                            </form>
+                        </div>
+                    </div>
                     <!-- Recent Bookings -->
                     <div class="card">
                         <div class="card-header">

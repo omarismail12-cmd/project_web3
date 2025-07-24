@@ -49,7 +49,10 @@
                         </div>
                     </div>
 
-                    <form id="booking-form" class="booking-form-main">
+                    <div id="auth-message" style="display:none; color: #b00; background: #fff3f3; border: 1px solid #f5c2c7; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center; font-size: 1.1em;">
+  <i class="fas fa-exclamation-triangle"></i> You must <a href="../pages/SignIn.html">sign in</a> to book a facility.
+</div>
+<form id="booking-form" class="booking-form-main">
     <input type="hidden" id="user-id" value="<?php echo isset($_SESSION['user_id']) ? htmlspecialchars($_SESSION['user_id']) : ''; ?>">
                         <div class="form-columns">
                             <div class="form-column">

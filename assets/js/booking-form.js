@@ -4,6 +4,18 @@ let facilitiesData = [];
 
 // Initialize the booking form page
 document.addEventListener('DOMContentLoaded', function() {
+    // Inline auth check
+    const authMessage = document.getElementById('auth-message');
+    const bookingForm = document.getElementById('booking-form');
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+        if (authMessage) authMessage.style.display = '';
+        if (bookingForm) bookingForm.style.display = 'none';
+        return;
+    } else {
+        if (authMessage) authMessage.style.display = 'none';
+        if (bookingForm) bookingForm.style.display = '';
+    }
     initBookingFormPage();
 });
 

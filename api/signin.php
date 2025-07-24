@@ -2,12 +2,15 @@
 session_start();
 require_once '../db.php'; // Your DB connection file
 
+// Set content type to JSON
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
     if (!$email || !$password) {
-        header('Location: ../pages/signin.html?error=missing_fields');
+        echo json_encode(['status' => 'error', 'message' => 'missing_fields']);
         exit;
     }
 
@@ -26,20 +29,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_role'] = $user['role'];
 
-            // Redirect based on role
-            if ($user['role'] === 'owner' || $user['role'] === 'admin') {
-                header('Location: ../pages/dashboard.html');
-            } else {
-                header('Location: ../pages/home.html');
-            }
+            // Return success with user data
+            echo json_encode([
+                'status' => 'success',
+                'user_id' => $user['id'],
+                'redirect' => ($user['role'] === 'owner' || $user['role'] === 'admin') ? '../pages/dashboard.html' : '../pages/home.html'
+            ]);
             exit;
         }
     }
 
     // If no user found or password invalid
-    header('Location: ../pages/signin.html?error=invalid_credentials');
+    echo json_encode(['status' => 'error', 'message' => 'invalid_credentials']);
     exit;
 } else {
-    header('Location: ../pages/signin.html');
+    echo json_encode(['status' => 'error', 'message' => 'invalid_method']);
     exit;
 }

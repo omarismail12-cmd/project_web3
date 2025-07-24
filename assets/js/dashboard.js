@@ -202,3 +202,70 @@ function initDashboard() {
 window.addEventListener('load', () => {
     setTimeout(animateStats, 500);
 });
+
+// Facility Management JS
+function fetchOwnedFacilities() {
+    fetch('http://localhost/project_web3/api/getFacilities.php')
+        .then(response => response.json())
+        .then(data => {
+            const dropdown = document.getElementById('facilityDropdown');
+            if (!dropdown) return;
+            dropdown.innerHTML = '<option value="">Select Facility</option>';
+            if (data && Array.isArray(data)) {
+                data.forEach(facility => {
+                    dropdown.innerHTML += `<option value="${facility.id}">${facility.name}</option>`;
+                });
+            }
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchOwnedFacilities();
+
+    // Add Facility
+    const addForm = document.getElementById('addFacilityForm');
+    if (addForm) {
+        addForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('addFacilityMsg');
+            msg.textContent = 'Adding...';
+            const formData = new FormData(addForm);
+            fetch('http://localhost/project_web3/add_facility.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                msg.textContent = data.message;
+                if (data.success) {
+                    addForm.reset();
+                    fetchOwnedFacilities();
+                }
+            })
+            .catch(() => { msg.textContent = 'Error adding facility.'; });
+        });
+    }
+
+    // Delete Facility
+    const deleteForm = document.getElementById('deleteFacilityForm');
+    if (deleteForm) {
+        deleteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('deleteFacilityMsg');
+            msg.textContent = 'Deleting...';
+            const formData = new FormData(deleteForm);
+            fetch('http://localhost/project_web3/delete_facility.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                msg.textContent = data.message;
+                if (data.success) {
+                    fetchOwnedFacilities();
+                }
+            })
+            .catch(() => { msg.textContent = 'Error deleting facility.'; });
+        });
+    }
+});
