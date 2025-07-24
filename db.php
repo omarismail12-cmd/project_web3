@@ -1,12 +1,10 @@
 <?php
 $host = 'localhost';
-$db = 'mala3b';
 $user = 'root';
-$pass = ''; // إذا لم تضع كلمة مرور في MySQL
+$password = '';
+$database = 'mala3b';
 
-$conn = new mysqli($host, $user, $pass, $db);
-
+$conn = new mysqli($host, $user, $password, $database);
 if ($conn->connect_error) {
-    die(json_encode(['status' => 'error', 'message' => 'DB connection failed']));
+    die("Connection failed: {$conn->connect_error}");
 }
-?>

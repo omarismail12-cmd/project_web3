@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('signup-form');
     const signupBtn = document.getElementById('signup-btn');
-    const btnText = signupBtn.querySelector('.btn-text');
-    const loadingSpinner = signupBtn.querySelector('.loading-spinner');
+    const btnText = signupBtn?.querySelector('.btn-text');
+    const loadingSpinner = signupBtn?.querySelector('.loading-spinner');
 
     const firstNameInput = document.getElementById('first-name');
     const lastNameInput = document.getElementById('last-name');
@@ -18,46 +18,25 @@ document.addEventListener('DOMContentLoaded', function() {
     setupPasswordToggle('toggle-confirm-password', 'confirm-password');
 
     // Show password strength as user types
-    passwordInput.addEventListener('input', function() {
+    passwordInput?.addEventListener('input', function() {
         updatePasswordStrength(this.value);
     });
 
-    // When "Create Account" button is clicked
-    signupBtn.addEventListener('click', function(e) {
-        e.preventDefault(); // prevent form submission
-
+    // Handle form submission
+    form?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
         clearAllErrors();
-
+        
         const isValid = validateForm();
         if (isValid) {
+            // Show loading state
             signupBtn.disabled = true;
             btnText.style.display = 'none';
             loadingSpinner.style.display = 'block';
-
-            // Simulate API / saving delay
-            setTimeout(() => {
-                // Save user data in localStorage
-                const user = {
-                    firstName: firstNameInput.value.trim(),
-                    lastName: lastNameInput.value.trim(),
-                    email: emailInput.value.trim(),
-                    password: passwordInput.value // Note: NEVER store plain passwords in real apps
-                };
-                localStorage.setItem('mala3bUser', JSON.stringify(user));
-                localStorage.setItem('userRole', 'client'); // example extra info
-
-                signupBtn.disabled = false;
-                btnText.style.display = 'block';
-                loadingSpinner.style.display = 'none';
-
-                alert('✅ Account created successfully! (saved to localStorage)');
-                form.reset();
-                strengthBar.className = 'strength-bar'; // reset strength
-                strengthLevel.textContent = 'Weak';
-
-                // Optional redirect:
-                // window.location.href = 'dashboard.html';
-            }, 1000);
+            
+            // Submit the form to PHP backend
+            this.submit();
         }
     });
 
@@ -66,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const toggle = document.getElementById(toggleId);
         const password = document.getElementById(passwordId);
 
-        toggle.addEventListener('click', function() {
+        toggle?.addEventListener('click', function() {
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
         });
@@ -147,6 +126,31 @@ document.addEventListener('DOMContentLoaded', function() {
         errors.forEach(el => {
             el.textContent = '';
             el.style.opacity = '0';
+        });
+    }
+
+    // === Logout button logic ===
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            try {
+                const response = await fetch('/api/logout.php', {
+                    method: 'POST',
+                    credentials: 'include' 
+                });
+
+                if (response.ok) {
+                    window.location.href = '/pages/signin.html';
+                } else {
+                    alert('Logout failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('An error occurred during logout.');
+            }
         });
     }
 });
