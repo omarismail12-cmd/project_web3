@@ -16,7 +16,7 @@
         <p>Join Mala3b to start booking courts</p>
       </div>
 
-      <form id="signup-form" action="/pages/signup.php" method="POST" class="auth-form">
+      <form id="signup-form" action="../api/signup.php" method="POST" class="auth-form">
         <div class="form-row">
           <div class="form-group">
             <label for="first-name">First name</label>
@@ -43,6 +43,15 @@
           <label for="email">Email address</label>
           <input type="email" id="email" name="email" required>
           <span class="error-message" id="email-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="role">Account Type</label>
+          <select id="role" name="role" required>
+            <option value="user">User</option>
+            <option value="owner">Owner/Admin</option>
+          </select>
+          <span class="error-message" id="role-error"></span>
         </div>
 
        <div class="form-group">
