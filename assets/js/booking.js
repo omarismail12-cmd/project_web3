@@ -8,13 +8,49 @@ window.selectSport = selectSport;
 window.openBookingModal = openBookingModal;
 
 document.addEventListener('DOMContentLoaded', async function () {
-    await fetchFacilitiesFromServer();
-    initBookingPage();
-    initFilters();
-    initBookingModal();
-    initDatePicker();
-    initMobileMenu();
-    initSearchFunctionality();
+    try {
+        // Load facilities first
+        await fetchFacilitiesFromServer();
+        
+        // Initialize page components
+        initBookingPage();
+        initFilters();
+        initBookingModal();
+        initDatePicker();
+        initMobileMenu();
+        initSearchFunctionality();
+        
+        // Check for sport in URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const sportFromUrl = urlParams.get('sport');
+        
+        if (sportFromUrl) {
+            // Small delay to ensure all elements are rendered
+            setTimeout(() => {
+                selectSport(sportFromUrl);
+            }, 100);
+        } else {
+            // Default to 'all' if no sport specified
+            selectSport('all');
+        }
+        
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+    } catch (error) {
+        console.error('Error initializing booking page:', error);
+    }
 });
 
 async function fetchFacilitiesFromServer() {
@@ -88,36 +124,108 @@ function renderSportCards() {
     const container = document.getElementById('sport-cards');
     if (!container) return;
 
+    // Default sports with icons
+    const defaultSports = {
+        'football': { name: 'Football', icon: 'fas fa-futbol' },
+        'basketball': { name: 'Basketball', icon: 'fas fa-basketball-ball' },
+        'tennis': { name: 'Tennis', icon: 'fas fa-table-tennis' },
+        'swimming': { name: 'Swimming', icon: 'fas fa-swimming-pool' },
+        'volleyball': { name: 'Volleyball', icon: 'fas fa-volleyball-ball' },
+        'badminton': { name: 'Badminton', icon: 'fas fa-shuttlecock' },
+        'soccer': { name: 'Soccer', icon: 'fas fa-futbol' },
+        'basket': { name: 'Basket', icon: 'fas fa-basketball-ball' },
+        'padel': { name: 'Padel', icon: 'fas fa-table-tennis' },
+        'paddle': { name: 'Paddle', icon: 'fas fa-table-tennis' },
+        'handball': { name: 'Handball', icon: 'fas fa-basketball' },
+        'hockey': { name: 'Hockey', icon: 'fas fa-hockey-puck' },
+        'rugby': { name: 'Rugby', icon: 'fas fa-football-ball' },
+        'golf': { name: 'Golf', icon: 'fas fa-golf-ball' },
+        'baseball': { name: 'Baseball', icon: 'fas fa-baseball-ball' },
+        'cricket': { name: 'Cricket', icon: 'fas fa-baseball-ball' },
+        'squash': { name: 'Squash', icon: 'fas fa-table-tennis' },
+        'table tennis': { name: 'Table Tennis', icon: 'fas fa-table-tennis' },
+        'beach volleyball': { name: 'Beach Volleyball', icon: 'fas fa-volleyball-ball' }
+    };
+
+    // Get unique sports from facilities data
+    const sportsInData = [...new Set(facilitiesData.map(f => 
+        String(f.sport || '').toLowerCase().trim()
+    ))].filter(Boolean);
+
+    // Combine default sports with those found in the data
     const sports = [
         { id: 'all', name: 'All Sports', icon: 'fas fa-trophy' },
-        { id: 'football', name: 'Football', icon: 'fas fa-futbol' },
-        { id: 'basketball', name: 'Basketball', icon: 'fas fa-basketball-ball' },
-        { id: 'tennis', name: 'Tennis', icon: 'fas fa-table-tennis' },
-        { id: 'swimming', name: 'Swimming', icon: 'fas fa-swimming-pool' },
-        { id: 'volleyball', name: 'Volleyball', icon: 'fas fa-volleyball-ball' },
-        { id: 'badminton', name: 'Badminton', icon: 'fas fa-shuttlecock' }
+        ...sportsInData.map(sportId => ({
+            id: sportId,
+            name: defaultSports[sportId]?.name || sportId.charAt(0).toUpperCase() + sportId.slice(1),
+            icon: defaultSports[sportId]?.icon || 'fas fa-running'
+        })).filter((sport, index, self) => 
+            index === self.findIndex(s => s.id === sport.id)
+        )
     ];
 
+    // Sort sports alphabetically, keeping 'All Sports' first
+    sports.sort((a, b) => {
+        if (a.id === 'all') return -1;
+        if (b.id === 'all') return 1;
+        return a.name.localeCompare(b.name);
+    });
+
     container.innerHTML = sports.map(sport => {
-        const count = facilitiesData.filter(f => sport.id === 'all' || f.sport === sport.id).length;
+        const count = facilitiesData.filter(f => 
+            sport.id === 'all' || 
+            String(f.sport || '').toLowerCase() === sport.id.toLowerCase()
+        ).length;
+        
+        if (count === 0 && sport.id !== 'all') return '';
+        
         return `
-            <div class="sport-card ${sport.id === selectedSport ? 'active' : ''}" 
+            <div class="sport-card ${sport.id.toLowerCase() === selectedSport.toLowerCase() ? 'active' : ''}" 
                  data-sport="${sport.id}" 
                  onclick="selectSport('${sport.id}')">
                 <div class="sport-icon"><i class="${sport.icon}"></i></div>
                 <h3>${sport.name}</h3>
-                <p>${count} facilities available</p>
+                <p>${count} ${count === 1 ? 'facility' : 'facilities'}</p>
             </div>
         `;
-    }).join('');
+    }).filter(Boolean).join('');
 }
 
 function selectSport(sport) {
-    selectedSport = sport;
-    document.querySelectorAll('.sport-card').forEach(card => card.classList.remove('active'));
-    document.querySelector(`.sport-card[data-sport="${sport}"]`)?.classList.add('active');
+    // Update the selected sport (case-insensitive match)
+    selectedSport = sport.toLowerCase();
+    
+    // Update active state of sport cards
+    document.querySelectorAll('.sport-card').forEach(card => {
+        const cardSport = card.getAttribute('data-sport')?.toLowerCase();
+        if (cardSport === selectedSport) {
+            card.classList.add('active');
+            // Scroll the active card into view if needed
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+            card.classList.remove('active');
+        }
+    });
+    
+    // Apply filters with the new sport selection
     applyFilters();
-    renderSportCards();
+    
+    // Update URL with the selected sport for sharing/bookmarking
+    const url = new URL(window.location);
+    if (sport.toLowerCase() === 'all') {
+        url.searchParams.delete('sport');
+    } else {
+        url.searchParams.set('sport', sport);
+    }
+    window.history.pushState({}, '', url);
+    
+    // Update the page title to reflect the current selection
+    if (sport.toLowerCase() !== 'all') {
+        const sportName = document.querySelector(`.sport-card[data-sport="${sport}"] h3`)?.textContent || sport;
+        document.title = `${sportName} Facilities | SportZone`;
+    } else {
+        document.title = 'All Sports Facilities | SportZone';
+    }
 }
 
 function initFilters() {
@@ -161,14 +269,32 @@ function applyFilters() {
     const evening = document.getElementById('evening')?.checked;
     const searchTerm = document.getElementById('search-input')?.value.toLowerCase() || '';
 
+    console.log('Applying filters - selectedSport:', selectedSport);
+    console.log('Facilities data:', facilitiesData);
+
     filteredFacilities = facilitiesData.filter(facility => {
-        const sportMatch = selectedSport === 'all' || facility.sport === selectedSport;
-        const priceMatch = facility.price <= maxPrice;
-        const timeMatch = morning || afternoon || evening;
+        // Normalize sport names for comparison
+        const facilitySport = String(facility.sport || '').toLowerCase().trim();
+        const normalizedSelectedSport = selectedSport.toLowerCase();
+        
+        // Check if facility.sport matches the selected sport (case-insensitive)
+        const sportMatch = normalizedSelectedSport === 'all' || 
+                         facilitySport === normalizedSelectedSport ||
+                         facilitySport.includes(normalizedSelectedSport);
+        
+        const priceMatch = parseFloat(facility.price || 0) <= maxPrice;
+        const timeMatch = morning || afternoon || evening; // This filter needs time data to work properly
+        
+        // Search in multiple fields
         const searchMatch = searchTerm === '' || 
-            facility.name.toLowerCase().includes(searchTerm) ||
-            facility.sport.toLowerCase().includes(searchTerm) ||
-            facility.description.toLowerCase().includes(searchTerm);
+            (facility.name && facility.name.toLowerCase().includes(searchTerm)) ||
+            (facility.sport && facility.sport.toLowerCase().includes(searchTerm)) ||
+            (facility.description && facility.description.toLowerCase().includes(searchTerm));
+
+        console.log('Facility:', facility.name, 
+                   'sportMatch:', sportMatch, 
+                   'priceMatch:', priceMatch, 
+                   'searchMatch:', searchMatch);
         
         return sportMatch && priceMatch && timeMatch && searchMatch;
     });
