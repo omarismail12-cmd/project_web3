@@ -265,6 +265,15 @@ body {
 
 .filters-header i {
   color: #10b981;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.filters-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
 }
 
 .filters-content {

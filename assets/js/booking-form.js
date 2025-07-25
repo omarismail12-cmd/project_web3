@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function initBookingFormPage() {
     try {
         // Get facility ID from URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search); //Reads the facility query parameter from the URL (e.g., booking-form.html?facility=3).
         const facilityId = urlParams.get('facility');
         
         if (!facilityId) {
@@ -50,7 +50,7 @@ async function initBookingFormPage() {
         initBookingForm();
         
         // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
+        const today = new Date().toISOString().split('T')[0]; // Creates a string like "2025-07-25" representing today’s date in YYYY-MM-DD format.
         document.getElementById('booking-date').min = today;
         
     } catch (error) {
@@ -133,9 +133,10 @@ function generateTimeSlots() {
     }
 
     // Generate time slots from 8 AM to 10 PM
+    //This converts the hour into a string like 08:00, 09:00, ..., 22:00:
     const slots = [];
     for (let hour = 8; hour <= 22; hour++) {
-        const time24 = `${hour.toString().padStart(2, '0')}:00`;
+        const time24 = `${hour.toString().padStart(2, '0')}:00`; // "5".padStart(2, "0") // → "05"
         let time12 = hour <= 12 ? `${hour}:00 AM` : `${hour - 12}:00 PM`;
         if (hour === 12) time12 = '12:00 PM';
         

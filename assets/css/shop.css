@@ -126,7 +126,7 @@ body {
 
 .hero-title-highlight {
     display: block;
-    background: linear-gradient(135deg, #059669 0%, #ea580c 25%, #0284c7 75%, #3b82f6 100%);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -137,6 +137,28 @@ body {
     color: #64748b;
     max-width: 48rem;
     margin: 0 auto 2rem;
+}
+
+/* Search Input */
+.product-search {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 2px solid #10b981;
+    border-radius: 9999px;
+    background: #ffffff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%2310b981" viewBox="0 0 24 24"><path d="M10 2a8 8 0 015.292 13.708l4.5 4.5a1 1 0 11-1.414 1.414l-4.5-4.5A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"/></svg>') no-repeat 0.75rem center;
+    background-size: 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 260px;
+    color: #1e293b;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.product-search::placeholder {
+    color: #6b7280;
+}
+.product-search:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
 }
 
 /* Filter Section */

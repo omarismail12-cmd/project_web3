@@ -353,6 +353,7 @@ class Shop {
 
     updateCartBadge() {
         const badge = document.getElementById('cart-badge');
+        if(!badge) return; // element not present on this page
         const totalItems = this.cart.reduce((total, item) => total + item.quantity, 0);
         
         if (totalItems > 0) {
