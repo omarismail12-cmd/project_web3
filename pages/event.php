@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - SportZone </title>
+    <link rel="stylesheet" href="../assets/css/event.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+       
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section events-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Sports Events</h1>
+                        <p>Discover upcoming tournaments, leagues, and special events at our sports complex</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sport Selection Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Browse by Sport</h2>
+                    <p>Find events for your favorite sports</p>
+                </div>
+                
+                <div class="sport-selection">
+                    <div id="sport-icons" class="sport-icons">
+                        <!-- Sport icons will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="section filter-section">
+            <div class="container">
+                <div class="filters-bar">
+                    <div class="filters-left">
+                        <div class="filter-dropdown">
+                            <label for="event-type-filter">Event Type:</label>
+                            <select id="event-type-filter">
+                                <option value="">All Types</option>
+                                <option value="tournament">Tournament</option>
+                                <option value="competition">Competition</option>
+                                <option value="workshop">Workshop</option>
+                                <option value="training">Training</option>
+                            </select>
+                        </div>
+                        <div class="filter-dropdown">
+                            <label>Date Range:</label>
+                            <div class="date-range">
+                                <input type="date" id="start-date" placeholder="Start Date">
+                                <span>to</span>
+                                <input type="date" id="end-date" placeholder="End Date">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-right">
+                        <div class="filter-option">
+                            <label><input type="checkbox" id="free-events" checked> Free Events</label>
+                        </div>
+                        <div class="filter-option">
+                            <label><input type="checkbox" id="paid-events" checked> Paid Events</label>
+                        </div>
+                        <button id="clear-filters" class="btn btn-outline">Clear Filters</button>
+                    </div>
+                </div>
+                
+                <div class="events-header">
+                    <div class="events-count">
+                        <p>Showing <span id="events-count">0</span> events</p>
+                    </div>
+                    <div class="events-sort">
+                        <label for="sort-events">Sort by:</label>
+                        <select id="sort-events">
+                            <option value="date">Date (Upcoming)</option>
+                            <option value="name">Name (A-Z)</option>
+                            <option value="sport">Sport</option>
+                            <option value="price">Price (Low to High)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="section events-section">
+            <div class="container">
+                <div id="events-container" class="events-grid">
+                    <!-- Events will be populated by JavaScript -->
+                </div>
+                <div class="load-more-container">
+                    <button id="load-more" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Load More Events
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+    </footer>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <h2 id="event-modal-title">Event Title</h2>
+            <div id="event-details">
+                <!-- Event details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/auth.js"></script>
+    <script>
+      if (!isLoggedIn()) {
+        alert('You must sign in to access the events page.');
+        window.location.href = '../pages/SignIn.html';
+      }
+    </script>
+    <script src="../assets/js/events.js"></script>
+    <script src="../assets/js/injict.js"></script>
+
+</body>
+</html>

@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,11 +36,19 @@
                 <a href="../pages/about.html" class="nav-link">About Us</a>
                 <a href="../pages/Service.html" class="nav-link">Services</a>
                 <a href="../pages/contact.html" class="nav-link">Contact</a>
+                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'owner'): ?>
+                    <a href="../pages/dashboard.html" class="nav-link">Dashboard</a>
+                <?php endif; ?>
+               
               </nav>
                 <div class="auth-buttons">
-                    <a href="../pages/SignIn.html"><button class="btn btn-ghost">Login</button></a>
-                    <a href="../pages/SignUp.html"><button class="btn btn-primary">Sign Up</button></a>
-                </div>
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="../api/signout.php"><button class="btn btn-ghost">Log Out</button></a>
+    <?php else: ?>
+        <a href="../pages/SignIn.html"><button class="btn btn-ghost">Login</button></a>
+        <a href="../pages/SignUp.html"><button class="btn btn-primary">Sign Up</button></a>
+    <?php endif; ?>
+</div>
 
                 <!-- Mobile Menu Button -->
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -100,16 +113,23 @@
 
                 <!-- Authentication Section -->
                 <div class="mobile-auth">
-                    <h4 class="mobile-section-title">Account</h4>
-                    <a href="../pages/SignIn.html" class="btn btn-ghost">
-                        <i class="fas fa-sign-in-alt"></i>
-                        <span>Login</span>
-                    </a>
-                    <a href="../pages/SignUp.html" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Sign Up</span>
-                    </a>
-                </div>
+    <h4 class="mobile-section-title">Account</h4>
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="../api/signout.php" class="btn btn-ghost">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Log Out</span>
+        </a>
+    <?php else: ?>
+        <a href="../pages/SignIn.html" class="btn btn-ghost">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+        </a>
+        <a href="../pages/SignUp.html" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i>
+            <span>Sign Up</span>
+        </a>
+    <?php endif; ?>
+</div>
             </nav>
 
         </div>

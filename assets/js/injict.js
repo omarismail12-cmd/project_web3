@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Inject header first, then initialize mobile menu
-  injectHTML("/project_web3/includes/header.html", ".header", "Header")
+  injectHTML("/project_web3/includes/header.php", ".header", "Header")
     .then(() => {
       // Initialize mobile menu after header is loaded
       initializeMobileMenu();
