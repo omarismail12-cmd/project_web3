@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test Page</title>
+    <title>Test Page - Static Site</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .note { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
 </head>
 <body>
     <h1>Hello from Vercel!</h1>
-    <p>If you can see this, static file serving is working.</p>
-    <p><a href="/pages/home.html">Go to Home</a></p>
+    <p>This is a static version of the site. The PHP backend is not available in this deployment.</p>
+    
+    <div class="note">
+        <h3>Note about PHP Backend</h3>
+        <p>Vercel doesn't support PHP out of the box. For full functionality, you'll need to:</p>
+        <ol>
+            <li>Use a traditional PHP host (like shared hosting or VPS)</li>
+            <li>Or set up a separate API service for your PHP endpoints</li>
+        </ol>
+    </div>
+
+    <h2>Available Pages (Static Only)</h2>
+    <ul>
+        <li><a href="/pages/home.html">Home Page</a></li>
+        <li><a href="/pages/about.html">About</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+    </ul>
 </body>
 </html>
